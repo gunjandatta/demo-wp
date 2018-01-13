@@ -16,6 +16,9 @@ module.exports = {
 
     // Resolve the file extensions
     resolve: {
+        alias: {
+            vue: "vue/dist/vue.js"
+        },
         extensions: [".js", ".vue"]
     },
 

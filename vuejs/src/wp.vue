@@ -1,9 +1,8 @@
 <template>
   <div id="webpart">
-    <h2>My Contacts</h2>
     <div class="table">
       <template v-for="item in items">
-        <div class="row" v-bind="contact">
+        <div class="row">
           <div>{{ item.MCCategory }}</div>
           <div>{{ item.Title }}</div>
           <div>{{ item.MCPhoneNumber }}</div>
@@ -17,12 +16,16 @@
 import { ContextInfo, List } from "gd-sprest";
 export default {
   name: "WebPart",
-  data: {
-    items: []
+  data: function() {
+    return {
+      items: []
+    };
   },
   created: function() {
     // See if the environment exists
     if (ContextInfo.existsFl) {
+      let wp = this;
+
       // Get the list
       new List("My Contacts")
         // Get the items
@@ -30,11 +33,11 @@ export default {
         // Execute the results
         .execute(function(items) {
           // Update the items
-          this.items = items.results;
+          wp.items = items.results;
         });
     } else {
       // Use test data
-      this.items = [
+      wp.items = [
         {
           MCCategory: "Business",
           MCPhoneNumber: "111-111-1111",
@@ -81,8 +84,8 @@ export default {
 .row > div {
   padding: 5px 10px;
 }
-h2 {
+
+.row > div:first-child {
   color: #42b983;
-  font-weight: normal;
 }
 </style>
