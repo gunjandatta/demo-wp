@@ -5,7 +5,7 @@ module.exports = {
     // Target the output of the typescript compiler
     context: path.join(__dirname, "src"),
 
-    // File(s) to target
+    // File to target
     entry: './index.ts',
 
     // Output
