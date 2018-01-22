@@ -10,11 +10,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "gd-sprest": "^2.6.4",
+    "gd-sprest": "^3.1.7",
     "vue": "^2.5.13"
   },
   "devDependencies": {
-    "css-loader": "^0.28.8",
+    "core-js": "^2.5.3",
+    "css-loader": "^0.28.9",
     "vue-loader": "^13.7.0",
     "vue-template-compiler": "^2.5.13",
     "webpack": "^3.10.0"

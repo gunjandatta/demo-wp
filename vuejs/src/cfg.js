@@ -1,4 +1,4 @@
-import { Helper, List, SPTypes, Types } from "gd-sprest";
+import { Helper } from "gd-sprest";
 
 /**
  * Configuration

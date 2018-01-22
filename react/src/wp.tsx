@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Types } from "gd-sprest";
-import { WebPartList } from "gd-sprest-react";
+import { WebParts } from "gd-sprest-react";
 
 /**
  * Contact Item
@@ -14,7 +14,7 @@ export interface IContactItem extends Types.IListItemQueryResult {
 /**
  * Contacts WebPart
  */
-export class ContactsWebPart extends WebPartList {
+export class ContactsWebPart extends WebParts.WebPartList {
     // Render item event
     onRenderItem = (item: IContactItem) => {
         // Return the item template

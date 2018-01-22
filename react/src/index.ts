@@ -1,4 +1,4 @@
-import { FabricWebPart, WebPartListCfg } from "gd-sprest-react";
+import { WebParts } from "gd-sprest-react";
 import { Configuration } from "./cfg";
 import { ContactsWebPart } from "./wp";
 declare var SP;
@@ -15,10 +15,10 @@ export class Contacts {
      */
     constructor() {
         // Create an instance of the contacts webpart
-        new FabricWebPart({
+        new WebParts.FabricWebPart({
             cfgElementId: "wp-contactsCfg",
             displayElement: ContactsWebPart,
-            editElement: WebPartListCfg,
+            editElement: WebParts.WebPartListCfg,
             targetElementId: "wp-contacts",
         });
     }
