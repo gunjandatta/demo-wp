@@ -21,7 +21,7 @@ export class DemoWebPart {
     }
 
     // Render the display component
-    private renderDisplay = (wp) => {
+    private renderDisplay = (wp: Types.Helper.WebPart.IWebPartInfo) => {
         // Set the display content
         wp.el.innerHTML = "<h3>The page is being displayed.</h3>";
     }
