@@ -14,12 +14,12 @@ export const Configuration = {
                         choices: ["Business", "Family", "Personal"],
                         name: "MCCategory",
                         title: "Category",
-                        type: Helper.Types.SPCfgFieldType.Choice
-                    } as Types.Helper.SPConfig.IFieldInfoChoice,
+                        type: Helper.SPCfgFieldType.Choice
+                    } as Types.Helper.IFieldInfoChoice,
                     {
                         name: "MCPhoneNumber",
                         title: "Phone Number",
-                        type: Helper.Types.SPCfgFieldType.Text
+                        type: Helper.SPCfgFieldType.Text
                     }
                 ],
 
