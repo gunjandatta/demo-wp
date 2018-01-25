@@ -10,8 +10,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "gd-sprest": "^3.1.8",
-    "gd-sprest-react": "^2.8.1",
+    "gd-sprest": "^3.2.0",
+    "gd-sprest-react": "^2.8.7",
     "office-ui-fabric-react": "^5.42.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0"
