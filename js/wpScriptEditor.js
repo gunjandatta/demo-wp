@@ -1,9 +1,32 @@
 <div id="demo"></div>
-<script type="text/javascript" src="/sites/dev/siteassets/sprest/gd-sprest.js"></script>
+<div id="demo-cfg" style="display:none;"></div>
+<script src="https://cdn.rawgit.com/gunjandatta/sprest-js/master/dist/gd-sprest-fabric.min.js"></script>
 <script type="text/javascript">
-$REST.Helper.WebPart({
-    elementId: "demo",
-    onRenderDisplay: function(wp) { wp.el.innerHTML = "<h3>The page is being displayed.</h3>"; },
-    onRenderEdit: function(wp) { wp.el.innerHTML = "<h3>The page is being edited.</h3>"; }
-});
+    SP.SOD.executeOrDelayUntilScriptLoaded(function() {
+        $REST.JS.WebParts.WPList({
+            odataQuery: {
+                OrderBy: ["Title"]
+            },
+            cfgElementId: "demo-cfg",
+            elementId: "demo",
+            onRenderItems: function (wpInfo, items) {
+                var listItems = [];
+
+                // Parse the items
+                for (var i = 0; i < items.length; i++) {
+                    // Add the item
+                    listItems.push($REST.JS.Fabric.Templates.ListItem({
+                        primaryText: items[i].Title,
+                        metaText: items[i].Id
+                    }));
+                }
+
+                // Render the list
+                $REST.JS.Fabric.List({
+                    el: wpInfo.el,
+                    items: listItems
+                });
+            }
+        });
+    }, "gd-sprest-js.js");
 </script>

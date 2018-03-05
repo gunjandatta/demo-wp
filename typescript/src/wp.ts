@@ -1,5 +1,13 @@
-import { Helper, Types } from "gd-sprest";
+import { Types } from "gd-sprest";
+import { Fabric, WebParts } from "gd-sprest-js";
 import { Configuration } from "./cfg";
+
+/**
+ * Dev Item
+ */
+interface IDemoItem extends Types.SP.IListItemQueryResult {
+    Title: string;
+}
 
 /**
  * Demo WebPart
@@ -13,22 +21,33 @@ export class DemoWebPart {
      */
     constructor() {
         // Create an instance of the demo webpart
-        new Helper.WebPart({
-            elementId: "wp-demo",
-            onRenderDisplay: this.renderDisplay,
-            onRenderEdit: this.renderEdit
+        WebParts.WPList({
+            odataQuery: {
+                OrderBy: ["Title"]
+            },
+            cfgElementId: "demo-cfg",
+            elementId: "demo",
+            onRenderItems: this.renderItems
         });
     }
 
-    // Render the display component
-    private renderDisplay = (wp: Types.Helper.IWebPartInfo) => {
-        // Set the display content
-        wp.el.innerHTML = "<h3>The page is being displayed.</h3>";
-    }
+    // Method to render the list items
+    private renderItems = (wpInfo: WebParts.Types.IWPListInfo, items: Array<IDemoItem>) => {
+        var listItems = [];
 
-    // Render the edit component
-    private renderEdit = (wp: Types.Helper.IWebPartInfo) => {
-        // Set the display content
-        wp.el.innerHTML = "<h3>The page is being edited.</h3>";
+        // Parse the items
+        for (var i = 0; i < items.length; i++) {
+            // Add the item
+            listItems.push(Fabric.Templates.ListItem({
+                primaryText: items[i].Title,
+                metaText: items[i].Id.toString()
+            }));
+        }
+
+        // Render the list
+        Fabric.List({
+            el: wpInfo.el,
+            items: listItems
+        });
     }
 }

@@ -14,13 +14,21 @@ module.exports = {
 
     // Resolve File Types
     resolve: {
-        extensions: [".js", ".jsx", ".ts", ".tsx"]
+        extensions: [".css", ".js", ".ts"]
     },
 
     // Module
     module: {
         // Rules
         rules: [
+            // CSS Files
+            {
+                test: /\.css$/,
+                use: [
+                    { loader: "style-loader" },
+                    { loader: "css-loader" }
+                ]
+            },
             // JavaScript Files
             {
                 // Target JavaScript files
