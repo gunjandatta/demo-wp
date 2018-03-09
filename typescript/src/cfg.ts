@@ -22,8 +22,8 @@ export const Configuration = new Helper.SPConfig({
                 <property name="ChromeType" type="chrometype">TitleOnly</property>
                 <property name="Content" type="string">
                     &lt;script type="text/javascript" src="/sites/dev/siteassets/wpDemo.js"&gt;&lt;/script&gt;
-                    &lt;div id="wp-demo"&gt;&lt;/div&gt;
-                    &lt;div id="wp-demo-cfg" style="display:none;"&gt;&lt;/div&gt;
+                    &lt;div id="demo"&gt;&lt;/div&gt;
+                    &lt;div id="demo-cfg" style="display:none;"&gt;&lt;/div&gt;
                     &lt;script type="text/javascript"&gt;SP.SOD.executeOrDelayUntilScriptLoaded(function() { new WebPartDemo(); }, 'wpDemo.js');&lt;/script&gt;
                 </property>
             </properties>
