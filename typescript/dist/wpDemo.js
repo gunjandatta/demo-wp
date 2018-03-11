@@ -191,9 +191,9 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ***************************************************************************************************/
-var Helper = __webpack_require__(8);
+var Helper = __webpack_require__(7);
 exports.Helper = Helper;
-var mapper_1 = __webpack_require__(5);
+var mapper_1 = __webpack_require__(6);
 exports.SPTypes = mapper_1.SPTypes;
 var Types = __webpack_require__(101);
 exports.Types = Types;
@@ -240,53 +240,14 @@ __export(__webpack_require__(127));
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var Mapper = __webpack_require__(50);
-exports.Mapper = Mapper;
-var SPTypes = __webpack_require__(63);
-exports.SPTypes = SPTypes;
-var Types = __webpack_require__(64);
-exports.Types = Types;
-//# sourceMappingURL=index.js.map
-
-/***/ }),
-/* 6 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
-Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(130));
-__export(__webpack_require__(131));
-__export(__webpack_require__(132));
-__export(__webpack_require__(133));
-var Types = __webpack_require__(134);
-exports.Types = Types;
-
-
-/***/ }),
-/* 7 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
-Object.defineProperty(exports, "__esModule", { value: true });
-// Fabric
 var Fabric = __webpack_require__(1);
 exports.Fabric = Fabric;
-// Components
-var Components = __webpack_require__(6);
-__export(__webpack_require__(6));
-// WebParts
+var Components = __webpack_require__(8);
+exports.Components = Components;
 var WebParts = __webpack_require__(9);
 exports.WebParts = WebParts;
 // Wait for the core library to be loaded
-SP ? SP.SOD.executeOrDelayUntilScriptLoaded(function () {
+SP && SP.SOD ? SP.SOD.executeOrDelayUntilScriptLoaded(function () {
     // Get the global variable
     var $REST = window["$REST"];
     if ($REST) {
@@ -299,7 +260,22 @@ SP ? SP.SOD.executeOrDelayUntilScriptLoaded(function () {
 
 
 /***/ }),
-/* 8 */
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var Mapper = __webpack_require__(50);
+exports.Mapper = Mapper;
+var SPTypes = __webpack_require__(63);
+exports.SPTypes = SPTypes;
+var Types = __webpack_require__(64);
+exports.Types = Types;
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -326,6 +302,24 @@ exports.SP = SP;
 var Types = __webpack_require__(100);
 exports.Types = Types;
 //# sourceMappingURL=index.js.map
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+__export(__webpack_require__(130));
+__export(__webpack_require__(131));
+__export(__webpack_require__(132));
+__export(__webpack_require__(133));
+var Types = __webpack_require__(134);
+exports.Types = Types;
+
 
 /***/ }),
 /* 9 */
@@ -879,7 +873,7 @@ function __export(m) {
 Object.defineProperty(exports, "__esModule", { value: true });
 __export(__webpack_require__(91));
 var lib_1 = __webpack_require__(2);
-var _1 = __webpack_require__(8);
+var _1 = __webpack_require__(7);
 /**
  * SharePoint Configuration
  */
@@ -2883,7 +2877,7 @@ exports.push([module.i, "/**\r\n * Contextual Host\r\n */\r\n\r\n/** Ensure the 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var gd_sprest_js_1 = __webpack_require__(7);
+var gd_sprest_js_1 = __webpack_require__(5);
 var cfg_1 = __webpack_require__(140);
 /**
  * Demo WebPart
@@ -3142,12 +3136,23 @@ exports.CommandBar = function (props) {
                 }
             });
         }
-        else if (buttonProps[i].menu && buttons[i]) {
+        // See if this is a menu
+        if (buttonProps[i].menu && buttons[i]) {
             // Get the elements
             var elMenu = buttons[i].parentElement.querySelector(".ms-ContextualMenu");
             if (elMenu) {
                 // Create the contextual menu
                 new _1.fabric.ContextualMenu(elMenu, buttons[i]);
+                // Get the items
+                var items = elMenu.querySelectorAll(".ms-ContextualMenu-item");
+                for (var j = 0; j < buttonProps[i].menu.items.length; j++) {
+                    var item = buttonProps[i].menu.items[j];
+                    // See if a click event exists
+                    if (item.onClick) {
+                        // Set the click event
+                        items[j].addEventListener("click", item.onClick);
+                    }
+                }
             }
         }
     }
@@ -3239,26 +3244,20 @@ exports.DatePicker = function (props) {
     };
     // Method to get the value
     var getValue = function () {
-        var dt = null;
         // Get the date value
-        var dtValue = _dp.picker.get();
-        if (dtValue) {
-            // Set the date
-            dt = new Date(dtValue);
-        }
-        // See if the time exists
-        var timeValue = _tp ? _tp.getValue() : null;
-        timeValue = timeValue && timeValue.value ? timeValue.value.split(" ") : null;
-        if (timeValue) {
-            // Set the time
-            // Set the hours
-            var hours = parseInt(timeValue[0].split(":")[0]);
-            hours += timeValue[1] == "PM" ? 12 : 0;
-            // Set the minutes
-            var minutes = parseInt(timeValue[0].split(":")[1]);
-            // Set the time value
-            dt.setHours(hours);
-            dt.setMinutes(minutes);
+        var dt = _dp ? new Date(_dp.picker.get()) : null;
+        if (dt) {
+            // See if the time exists
+            var timeValue = _tp ? _tp.getValue() : null;
+            timeValue = timeValue && timeValue.value ? timeValue.value.split(" ") : null;
+            if (timeValue) {
+                // Set the hours
+                var hours = parseInt(timeValue[0].split(":")[0]);
+                hours += timeValue[1] == "PM" ? 12 : 0;
+                dt.setHours(hours);
+                // Set the minutes
+                dt.setMinutes(parseInt(timeValue[0].split(":")[1]));
+            }
         }
         // Return the date
         return dt;
@@ -3273,7 +3272,15 @@ exports.DatePicker = function (props) {
             props.onChange ? props.onChange(getValue()) : null;
         };
         // Create the date picker
-        return new _1.fabric.DatePicker(el);
+        var dp = new _1.fabric.DatePicker(el);
+        // See if a value exists
+        if (props.value) {
+            var dt = new Date(props.value);
+            // Set the date
+            dp.picker.set("select", [dt.getFullYear(), dt.getMonth() + 1, dt.getDate()]);
+        }
+        // Return the date picker
+        return dp;
     };
     // Method to render the time picker
     var renderTimePicker = function (el) {
@@ -3310,11 +3317,23 @@ exports.DatePicker = function (props) {
                 });
             }
         }
+        // See if a value exists
+        var value = null;
+        if (props.value) {
+            var dt = new Date(props.value);
+            var time = dt.toLocaleTimeString().split(' ');
+            // Set the hours
+            var info = time[0].split(':');
+            var hours = ("0" + (parseInt(info[0]) + (time[1] == "PM" && props.timePickerType == TimePickerType.Military ? 12 : 0))).slice(-2);
+            // Set the time value
+            value = hours + ":" + info[1] + " " + time[1];
+        }
         // Render a dropdown
         return _1.Dropdown({
             el: el,
             label: "Time",
-            options: options
+            options: options,
+            value: value
         });
     };
     // Add the date picker
@@ -4061,7 +4080,7 @@ exports.PeoplePicker = function (props) {
     var getValue = function () {
         var users = [];
         // Parse the selected users
-        var selectedUsers = _peoplepicker._peoplePickerSearchBox ? _peoplepicker._peoplePickerSearchBox.querySelectorAll(".ms-Persona") : [];
+        var selectedUsers = _peoplepicker._container ? _peoplepicker._container.querySelectorAll(".ms-Persona") : [];
         // Set the value
         for (var i = 0; i < selectedUsers.length; i++) {
             var userInfo = selectedUsers[i].getAttribute("data-user");
@@ -4119,7 +4138,7 @@ exports.PeoplePicker = function (props) {
                     btn.addEventListener("click", function (ev) {
                         // Disable postback
                         ev ? ev.preventDefault() : null;
-                        // Search all sources
+                        // Render the results
                         renderResults(ev, true);
                     });
                 }
@@ -4133,8 +4152,26 @@ exports.PeoplePicker = function (props) {
                             // Clear the filter
                             _filterText = "";
                             _peoplepicker._peoplePickerSearch.value = "";
-                            // Select the result
-                            _peoplepicker._selectResult.apply(_peoplepicker, [ev]);
+                            // Get the user information
+                            var userInfo = JSON.parse(ev.currentTarget.getAttribute("data-user"));
+                            // Add the user
+                            _peoplepicker._container.querySelector(".selected-users").innerHTML += _templates.persona(userInfo);
+                            // Add the click event
+                            var users = _peoplepicker._container.querySelectorAll(".selected-users");
+                            users[users.length - 1].querySelector(".ms-Persona-actionIcon").addEventListener("click", function (ev) {
+                                var el = ev.currentTarget;
+                                // Find the persona element
+                                while (el && el.className.indexOf("ms-PeoplePicker-persona") < 0) {
+                                    el = el.parentElement;
+                                }
+                                // See if the element exists
+                                if (el) {
+                                    // Remove the element
+                                    el.parentElement.removeChild(el);
+                                }
+                            });
+                            // Close the search box
+                            _peoplepicker._contextualHostView.disposeModal();
                         });
                     }
                 }
@@ -4146,11 +4183,28 @@ exports.PeoplePicker = function (props) {
         '<div class="ms-PeoplePicker">',
         _templates.header(),
         _templates.searchBox(),
-        _templates.results("Users"),
+        _templates.results("Users", props.value),
         '</div>'
     ].join('\n');
     // Create the people picker
     var _peoplepicker = new _1.fabric.PeoplePicker(props.el.querySelector(".ms-PeoplePicker"));
+    // Get the personas
+    var personas = _peoplepicker._container.querySelectorAll(".ms-PeoplePicker-persona");
+    for (var i = 0; i < personas.length; i++) {
+        // Add a click event
+        personas[i].querySelector(".ms-Persona-actionIcon").addEventListener("click", function (ev) {
+            var el = ev.currentTarget;
+            // Find the persona element
+            while (el && el.className.indexOf("ms-PeoplePicker-persona") < 0) {
+                el = el.parentElement;
+            }
+            // See if the element exists
+            if (el) {
+                // Remove the element
+                el.parentElement.removeChild(el);
+            }
+        });
+    }
     // Add the search event
     _peoplepicker._peoplePickerSearch.addEventListener("keyup", function (ev) {
         // Set the filter text
@@ -4608,7 +4662,7 @@ var _ContextInfo = /** @class */ (function () {
         configurable: true
     });
     Object.defineProperty(_ContextInfo, "document", {
-        get: function () { return this.window.document; },
+        get: function () { return this.window ? this.window.document : null; },
         enumerable: true,
         configurable: true
     });
@@ -5119,7 +5173,7 @@ exports.RequestType = {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var lib_1 = __webpack_require__(2);
-var mapper_1 = __webpack_require__(5);
+var mapper_1 = __webpack_require__(6);
 var _1 = __webpack_require__(0);
 /**
  * Request Helper
@@ -9068,7 +9122,7 @@ var TargetInfo = /** @class */ (function () {
     /*********************************************************************************************************************************/
     // Method to get the domain url
     TargetInfo.prototype.getDomainUrl = function () {
-        var url = lib_1.ContextInfo.document.location.href;
+        var url = lib_1.ContextInfo.document ? lib_1.ContextInfo.document.location.href : "";
         // See if this is an app web
         if (lib_1.ContextInfo.isAppWeb) {
             // Set the url to the host url
@@ -9086,7 +9140,7 @@ var TargetInfo = /** @class */ (function () {
     // Method to get a query string value
     TargetInfo.getQueryStringValue = function (key) {
         // Get the query string
-        var queryString = lib_1.ContextInfo.existsFl ? lib_1.ContextInfo.document.location.href.split('?') : [""];
+        var queryString = lib_1.ContextInfo.existsFl && lib_1.ContextInfo.document ? lib_1.ContextInfo.document.location.href.split('?') : [""];
         queryString = queryString.length > 1 ? queryString[1] : queryString[0];
         // Parse the values
         var values = queryString.split('&');
@@ -9276,7 +9330,7 @@ var XHRRequest = /** @class */ (function () {
         }
         else {
             // Get the request digest
-            var requestDigest = lib_1.ContextInfo.document.querySelector("#__REQUESTDIGEST");
+            var requestDigest = lib_1.ContextInfo.document ? lib_1.ContextInfo.document.querySelector("#__REQUESTDIGEST") : "";
             requestDigest = requestDigest ? requestDigest.value : "";
             // Set the request digest
             this.xhr.setRequestHeader("X-RequestDigest", requestDigest);
@@ -10529,7 +10583,7 @@ exports.SPCfgType = {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var lib_1 = __webpack_require__(2);
-var mapper_1 = __webpack_require__(5);
+var mapper_1 = __webpack_require__(6);
 /**
  * JSLink Helper Methods
  */
@@ -12101,9 +12155,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var helper_1 = __webpack_require__(8);
+var helper_1 = __webpack_require__(7);
 exports.Helper = helper_1.Types;
-var mapper_1 = __webpack_require__(5);
+var mapper_1 = __webpack_require__(6);
 exports.SP = mapper_1.Types;
 var utils_1 = __webpack_require__(0);
 exports.Util = utils_1.Types;
@@ -12116,14 +12170,14 @@ exports.Util = utils_1.Types;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var Helper = __webpack_require__(8);
+var Helper = __webpack_require__(7);
 var Lib = __webpack_require__(2);
-var Mapper = __webpack_require__(5);
+var Mapper = __webpack_require__(6);
 /**
  * SharePoint REST Library
  */
 exports.$REST = {
-    __ver: 3.53,
+    __ver: 3.57,
     ContextInfo: Lib.ContextInfo,
     DefaultRequestToHostFl: false,
     Helper: {
@@ -12157,11 +12211,11 @@ exports.$REST = {
 };
 // See if the library doesn't exist, or is an older version
 var global = Lib.ContextInfo.window.$REST;
-if (global == null || global.__ver == null || global.__ver < exports.$REST.__ver) {
+if ((global == null || global.__ver == null || global.__ver < exports.$REST.__ver) && Lib.ContextInfo.window.SP) {
     // Set the global variable
     Lib.ContextInfo.window.$REST = exports.$REST;
     // Alert other scripts this library is loaded
-    SP && SP.SOD ? SP.SOD.notifyScriptLoadedAndExecuteWaitingJobs("gd-sprest.js") : null;
+    Lib.ContextInfo.window.SP.SOD.notifyScriptLoadedAndExecuteWaitingJobs("gd-sprest.js");
 }
 //# sourceMappingURL=rest.js.map
 
@@ -12970,6 +13024,22 @@ exports.PeoplePicker = function (props) {
             text: props.label
         }) || "";
     };
+    // Persona
+    var persona = function (user) {
+        // Return the persona
+        return [
+            '<div class="ms-Persona ms-Persona--token ms-PeoplePicker-persona ms-Persona--xs" data-user=\'' + JSON.stringify(user) + '\'>',
+            '<div class="ms-Persona-imageArea"></div>',
+            '<div class="ms-Persona-details">',
+            '<div class="ms-Persona-primaryText">' + user.DisplayText + '</div>',
+            '<div class="ms-Persona-secondaryText">' + ((user.EntityData ? user.EntityData.Email : null) || "") + '</div>',
+            '</div>',
+            '<div class="ms-Persona-actionIcon">',
+            '<i class="ms-Icon ms-Icon--Cancel"></i>',
+            '</div>',
+            '</div>',
+        ].join('\n');
+    };
     // Result
     var result = function (user) {
         // Ensure the user exists
@@ -12980,7 +13050,7 @@ exports.PeoplePicker = function (props) {
                 '<div class="ms-Persona-imageArea"></div>',
                 '<div class="ms-Persona-details">',
                 '<div class="ms-Persona-primaryText">' + user.DisplayText + '</div>',
-                '<div class="ms-Persona-secondaryText">' + user.EntityData.Email + '</div>',
+                '<div class="ms-Persona-secondaryText">' + ((user.EntityData ? user.EntityData.Email : null) || "") + '</div>',
                 '</div>',
                 '</div>',
                 '<button class="ms-PeoplePicker-resultAction" style="display: none;"></button>',
@@ -12996,14 +13066,24 @@ exports.PeoplePicker = function (props) {
         ].join('\n');
     };
     // Results
-    var results = function (title, searchText) {
+    var results = function (title, users, searchText) {
         if (title === void 0) { title = ""; }
+        if (users === void 0) { users = []; }
         if (searchText === void 0) { searchText = ""; }
+        var personas = [];
+        // Parse the users
+        for (var i = 0; i < users.length; i++) {
+            // Add the persona
+            personas.push(persona(users[i]));
+        }
         // Return the template
         return [
             '<div class="ms-PeoplePicker-results">',
             group(title, searchText),
-            '<div class="selected-users"></div>',
+            '<div class="selected-users">',
+            personas.join('\n'),
+            '</div>',
+            '</div>'
         ].join('\n');
     };
     // Search Box
@@ -13020,6 +13100,7 @@ exports.PeoplePicker = function (props) {
     return {
         group: group,
         header: header,
+        persona: persona,
         result: result,
         results: results,
         searchBox: searchBox
@@ -13261,8 +13342,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var gd_sprest_1 = __webpack_require__(3);
-var __1 = __webpack_require__(7);
-var _1 = __webpack_require__(6);
+var __1 = __webpack_require__(5);
+var _1 = __webpack_require__(8);
 /**
  * Field
  */
@@ -13417,6 +13498,28 @@ exports.Field = function (props) {
         }
         // Return the values
         return values;
+    };
+    // Method to get the user values
+    var getUserValues = function (value) {
+        var users = [];
+        // See if a value exists
+        if (value) {
+            var userValues = value.results ? value.results : [value];
+            for (var i = 0; i < userValues.length; i++) {
+                var userValue = userValues[i];
+                // Add the user
+                users.push({
+                    DisplayText: userValue.Title,
+                    EntityData: {
+                        Email: userValue.EMail,
+                        SPUserID: userValue.Id.toString()
+                    },
+                    Key: userValue.Id.toString()
+                });
+            }
+        }
+        // Return the users
+        return users;
     };
     // Method to update the value
     var _value = props.value;
@@ -13715,7 +13818,7 @@ exports.Field = function (props) {
                             el: props.el,
                             label: userInfo.title,
                             required: userInfo.required,
-                            value: value
+                            value: getUserValues(value)
                         })
                     });
                     break;
@@ -13794,8 +13897,8 @@ exports.Field = function (props) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var gd_sprest_1 = __webpack_require__(3);
-var fabric_1 = __webpack_require__(1);
-var _1 = __webpack_require__(6);
+var __1 = __webpack_require__(5);
+var _1 = __webpack_require__(8);
 /**
  * List Form
  */
@@ -13950,12 +14053,69 @@ var _ListForm = /** @class */ (function () {
         };
         // Method to load the item
         this.loadItem = function () {
+            var reloadItem = false;
             // See if the item already exist
             if (_this._info.item) {
+                // Parse the fields
+                for (var fieldName in _this._info.fields) {
+                    var field = _this._info.fields[fieldName];
+                    // See what type of field this is
+                    switch (field.FieldTypeKind) {
+                        // Lookup or User Field
+                        case gd_sprest_1.SPTypes.FieldType.Lookup:
+                        case gd_sprest_1.SPTypes.FieldType.User:
+                            var fieldValue = _this._info.item[fieldName + "Id"];
+                            // Ensure the value exists
+                            if (fieldValue) {
+                                // See if a value exists
+                                if (fieldValue.results ? fieldValue.results.length > 0 : fieldValue > 0) {
+                                    // Ensure the field data has been loaded
+                                    if (_this._info.item[fieldName] == null) {
+                                        // Set the flag
+                                        reloadItem = true;
+                                    }
+                                }
+                            }
+                            break;
+                        // Default
+                        default:
+                            // See if this is an taxonomy field
+                            if (field.TypeAsString.startsWith("TaxonomyFieldType")) {
+                                var fieldValue_1 = _this._info.item[fieldName + "Id"];
+                                // Ensure the value exists
+                                if (fieldValue_1) {
+                                    // See if a field value exists
+                                    if (fieldValue_1.results ? fieldValue_1.results.length > 0 : fieldValue_1 != null) {
+                                        // Parse the fields
+                                        for (var fieldName_1 in _this._info.fields) {
+                                            var valueField = _this._info.fields[fieldName_1];
+                                            // See if this is the value field
+                                            if (valueField.InternalName == field.InternalName + "_0" || valueField.Title == field.InternalName + "_0") {
+                                                // Ensure the value field is loaded
+                                                if (_this._info.item[valueField.InternalName] == null) {
+                                                    // Set the flag
+                                                    reloadItem = true;
+                                                }
+                                                break;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            break;
+                    }
+                    // See if we are reloading the item
+                    if (reloadItem) {
+                        break;
+                    }
+                }
+            }
+            // See if the item exists
+            if (_this._info.item && !reloadItem) {
                 // See if we are loading attachments
                 if (_this._props.loadAttachments && _this._info.attachments == null) {
                     // Load the attachments
-                    exports.ListForm.loadAttachments(_this._props).then(function (attachments) {
+                    _ListForm.loadAttachments(_this._props).then(function (attachments) {
                         // Set the attachments
                         _this._info.attachments = attachments;
                         // Resolve the promise
@@ -13967,11 +14127,11 @@ var _ListForm = /** @class */ (function () {
                     _this._resolve(_this._info);
                 }
             }
-            else if (_this._props.itemId > 0) {
+            else if (reloadItem || _this._props.itemId > 0) {
                 // Update the item query
                 _this._info.query = _ListForm.generateODataQuery(_this._info, _this._props.loadAttachments);
                 // Get the list item
-                _this._info.list.Items(_this._props.itemId)
+                _this._info.list.Items(reloadItem ? _this._props.item.Id : _this._props.itemId)
                     .query(_this._info.query)
                     .execute(function (item) {
                     // Save the attachments
@@ -14110,7 +14270,7 @@ var _ListForm = /** @class */ (function () {
         });
     };
     // Method to remove attachments from an item
-    _ListForm.prototype.removeAttachments = function (info, attachments) {
+    _ListForm.removeAttachments = function (info, attachments) {
         // Return a promise
         return new Promise(function (resolve, reject) {
             var web = new gd_sprest_1.Web(info.webUrl);
@@ -14131,6 +14291,7 @@ var _ListForm = /** @class */ (function () {
     };
     // Method to render a display form for an item
     _ListForm.renderDisplayForm = function (props) {
+        var fields = [];
         // Render the form template
         _ListForm.renderFormTemplate(props);
         // Load the list item
@@ -14150,7 +14311,7 @@ var _ListForm = /** @class */ (function () {
                     // Set the html for this field
                     elField.innerHTML = [
                         '<div class="display-form">',
-                        fabric_1.Templates.Label({
+                        __1.Fabric.Templates.Label({
                             className: "field-label",
                             description: field.Description,
                             text: field.Title
@@ -14158,6 +14319,8 @@ var _ListForm = /** @class */ (function () {
                         '<div class="field-value">' + html + '</div>',
                         '</div>'
                     ].join('\n');
+                    // Add this field
+                    fields.push(elField);
                 }
             }
             // See if we are displaying a user field
@@ -14166,14 +14329,18 @@ var _ListForm = /** @class */ (function () {
                 window["ProcessImn"]();
             }
         });
+        // Return the form
+        return {
+            getFields: function () { return fields; }
+        };
     };
     // Render the edit form
     _ListForm.renderEditForm = function (props) {
         var controlMode = typeof (props.controlMode) === "number" ? props.controlMode : props.info.item ? gd_sprest_1.SPTypes.ControlMode.Edit : gd_sprest_1.SPTypes.ControlMode.New;
+        var fields = [];
         // Render the form template
         _ListForm.renderFormTemplate(props);
         // Parse the fields
-        var fields = [];
         for (var fieldName in props.info.fields) {
             var field = props.info.fields[fieldName];
             var value = props.info.item ? props.info.item[fieldName] : null;
@@ -14216,29 +14383,209 @@ var _ListForm = /** @class */ (function () {
                 fields.push(field);
             });
         }
-        // Return the fields
-        return fields;
+        // Return the form
+        return {
+            getFields: function () { return fields; },
+            getValues: function () {
+                var formValues = {};
+                var unknownUsers = {};
+                // Parse the fields
+                for (var i = 0; i < fields.length; i++) {
+                    var field = fields[i];
+                    var fieldName = field.fieldInfo.name;
+                    var fieldValue = field.element.getValue();
+                    // Update the field name/value, based on the type
+                    switch (field.fieldInfo.type) {
+                        // Choice
+                        case gd_sprest_1.SPTypes.FieldType.Choice:
+                            // Update the field value
+                            fieldValue = fieldValue ? fieldValue.value : fieldValue;
+                            break;
+                        // Lookup
+                        case gd_sprest_1.SPTypes.FieldType.Lookup:
+                            // Append 'Id' to the field name
+                            fieldName += fieldName.lastIndexOf("Id") == fieldName.length - 2 ? "" : "Id";
+                            // See if this is a multi-value field
+                            if (field.fieldInfo.multi) {
+                                var values = fieldValue || [];
+                                fieldValue = { results: [] };
+                                // Parse the options
+                                for (var j = 0; j < values.length; j++) {
+                                    // Add the value
+                                    fieldValue.results.push(values[j].value);
+                                }
+                            }
+                            else {
+                                // Update the field value
+                                fieldValue = fieldValue ? fieldValue.value : fieldValue;
+                            }
+                            break;
+                        // Multi-Choice
+                        case gd_sprest_1.SPTypes.FieldType.MultiChoice:
+                            var options = fieldValue || [];
+                            fieldValue = { results: [] };
+                            // Parse the options
+                            for (var j = 0; j < options.length; j++) {
+                                // Add the option
+                                fieldValue.results.push(options[j].value);
+                            }
+                            break;
+                        // URL
+                        case gd_sprest_1.SPTypes.FieldType.URL:
+                            // See if the field value exists
+                            if (fieldValue) {
+                                // Add the metadata
+                                fieldValue.__metadata = { type: "SP.FieldUrlValue" };
+                            }
+                            break;
+                        // User
+                        case gd_sprest_1.SPTypes.FieldType.User:
+                            // Append 'Id' to the field name
+                            fieldName += fieldName.lastIndexOf("Id") == fieldName.length - 2 ? "" : "Id";
+                            // See if this is a multi-value field
+                            if (field.fieldInfo.multi) {
+                                var values = fieldValue || [];
+                                fieldValue = { results: [] };
+                                // Parse the options
+                                for (var j = 0; j < values.length; j++) {
+                                    var userValue = values[j];
+                                    if (userValue && userValue.EntityData) {
+                                        // Ensure the user or group id exists
+                                        if (userValue.EntityData.SPGroupID || userValue.EntityData.SPUserID) {
+                                            // Update the field value
+                                            fieldValue.results.push(userValue.EntityData.SPUserID || userValue.EntityData.SPGroupID);
+                                        }
+                                        else {
+                                            // Add the unknown user account
+                                            unknownUsers[fieldName] = unknownUsers[fieldName] || [];
+                                            unknownUsers[fieldName].push(userValue.Key);
+                                        }
+                                    }
+                                }
+                            }
+                            else {
+                                var userValue = fieldValue ? fieldValue[0] : null;
+                                if (userValue && userValue.EntityData) {
+                                    // Ensure the user or group id exists
+                                    if (userValue.EntityData.SPGroupID || userValue.EntityData.SPUserID) {
+                                        // Update the field value
+                                        fieldValue = userValue.EntityData.SPUserID || userValue.EntityData.SPGroupID;
+                                    }
+                                    else {
+                                        // Add the unknown user account
+                                        unknownUsers[fieldName] = unknownUsers[fieldName] || [];
+                                        unknownUsers[fieldName].push(userValue.Key);
+                                    }
+                                }
+                                else {
+                                    // Clear the field value
+                                    fieldValue = null;
+                                }
+                            }
+                            break;
+                        // MMS
+                        default:
+                            if (field.fieldInfo.typeAsString.startsWith("TaxonomyFieldType")) {
+                                // See if this is a multi field
+                                if (field.fieldInfo.typeAsString.endsWith("Multi")) {
+                                    // Update the field name to the value field
+                                    fieldName = field.fieldInfo.valueField.InternalName;
+                                    // Parse the field values
+                                    var fieldValues = fieldValue || [];
+                                    fieldValue = [];
+                                    for (var j = 0; j < fieldValues.length; j++) {
+                                        var termInfo = fieldValues[j];
+                                        // Add the field value
+                                        fieldValue.push(-1 + ";#" + termInfo.text + "|" + termInfo.value);
+                                    }
+                                    // Set the field value
+                                    fieldValue = fieldValue.join(";#");
+                                }
+                                else {
+                                    // Update the value
+                                    fieldValue = fieldValue ? {
+                                        __metadata: { type: "SP.Taxonomy.TaxonomyFieldValue" },
+                                        Label: fieldValue.text,
+                                        TermGuid: fieldValue.value,
+                                        WssId: -1
+                                    } : fieldValue;
+                                }
+                            }
+                            break;
+                    }
+                    // Set the field value
+                    formValues[fieldName] = fieldValue;
+                }
+                // Return a promise
+                return new Promise(function (resolve, reject) {
+                    var web = new gd_sprest_1.Web();
+                    // Parse the field names
+                    for (var fieldName in unknownUsers) {
+                        // Parse the user accounts
+                        for (var i = 0; i < unknownUsers[fieldName].length; i++) {
+                            // Ensure this user account exists
+                            web.ensureUser(unknownUsers[fieldName][i]).execute(true);
+                        }
+                    }
+                    // Wait for the requests to complete
+                    web.done(function () {
+                        var args = [];
+                        for (var _i = 0; _i < arguments.length; _i++) {
+                            args[_i] = arguments[_i];
+                        }
+                        // Parse the field names
+                        for (var fieldName in unknownUsers) {
+                            // Parse the user accounts
+                            for (var i = 0; i < unknownUsers[fieldName].length; i++) {
+                                var userLogin = unknownUsers[fieldName][i];
+                                // Parse the responses
+                                for (var j = 0; j < args.length; j++) {
+                                    var user = args[j];
+                                    // See if this is the user
+                                    if (user.LoginName == userLogin) {
+                                        // See if this is a multi-user value
+                                        if (formValues[fieldName].results != null) {
+                                            // Set the user account
+                                            formValues[fieldName].push(user.Id);
+                                        }
+                                        else {
+                                            // Set the user account
+                                            formValues[fieldName] = user.Id;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        // Resolve the promise
+                        resolve(formValues);
+                    });
+                });
+            }
+        };
     };
     // Method to render the form template
     _ListForm.renderFormTemplate = function (props) {
         // Clear the element
         props.el.innerHTML = "";
-        // Parse the fields
-        for (var fieldName in props.info.fields) {
-            var excludeField = props.includeFields ? true : false;
-            // See if the fields have been defined
-            if (props.includeFields) {
-                // Parse the fields to include
-                for (var i = 0; i < props.includeFields.length; i++) {
+        // See if the field order has been specified
+        if (props.includeFields) {
+            // Parse the fields to include
+            for (var i = 0; i < props.includeFields.length; i++) {
+                // Parse the fields
+                for (var fieldName in props.info.fields) {
                     // See if we are including this field
                     if (props.includeFields[i] == fieldName) {
-                        // Set the flag
-                        excludeField = false;
+                        // Append the field to the form
+                        props.el.innerHTML += "<div data-field='" + fieldName + "'></div>";
                         break;
                     }
                 }
             }
-            else {
+        }
+        else if (props.excludeFields) {
+            // Parse the fields
+            for (var fieldName in props.info.fields) {
+                var excludeField = props.includeFields ? true : false;
                 // Parse the fields
                 for (var i = 0; i < props.excludeFields.length; i++) {
                     // See if we are excluding this field
@@ -14248,13 +14595,20 @@ var _ListForm = /** @class */ (function () {
                         break;
                     }
                 }
+                // See if we are excluding the field
+                if (excludeField) {
+                    continue;
+                }
+                // Append the field to the form
+                props.el.innerHTML += "<div data-field='" + fieldName + "'></div>";
             }
-            // See if we are excluding the field
-            if (excludeField) {
-                continue;
+        }
+        else {
+            // Parse the fields
+            for (var fieldName in props.info.fields) {
+                // Append the field to the form
+                props.el.innerHTML += "<div data-field='" + fieldName + "'></div>";
             }
-            // Append the field to the form
-            props.el.innerHTML += "<div data-field='" + fieldName + "'></div>";
         }
     };
     // Method to save attachments to an existing item
@@ -14323,6 +14677,61 @@ var _ListForm = /** @class */ (function () {
             }
         });
     };
+    // Method to show a file dialog
+    _ListForm.showFileDialog = function (info) {
+        // Return a promise
+        return new Promise(function (resolve, reject) {
+            // Method to add an attachment
+            var addAttachment = function (ev) {
+                // Get the source file
+                var srcFile = ev.target["files"][0];
+                if (srcFile) {
+                    var reader = new FileReader();
+                    // Set the file loaded event
+                    reader.onloadend = function (ev) {
+                        var attachment = null;
+                        var ext = srcFile.name.split(".");
+                        ext = ext[ext.length - 1].toLowerCase();
+                        // Get the list
+                        info.list
+                            .Items(info.item.Id)
+                            .AttachmentFiles()
+                            .add(srcFile.name, ev.target.result)
+                            .execute(function () {
+                            // Refresh the item
+                            _ListForm.refreshItem(info).then(function (info) {
+                                // Remove the element
+                                document.body.removeChild(el);
+                                // Resolve the promise
+                                resolve(info);
+                            });
+                        });
+                    };
+                    // Set the error
+                    reader.onerror = function (ev) {
+                        // Reject the promise
+                        reject(ev.target.error);
+                    };
+                    // Read the file
+                    reader.readAsArrayBuffer(srcFile);
+                }
+            };
+            // Create the file element
+            var el = document.body.querySelector("#listform-attachment");
+            if (el == null) {
+                el = document.createElement("input");
+                // Set the properties
+                el.id = "listform-attachment";
+                el.type = "file";
+                el.hidden = true;
+                el.onchange = addAttachment;
+                // Add the element to the body
+                document.body.appendChild(el);
+            }
+            // Show the dialog
+            el.click();
+        });
+    };
     // Method to generate the odata query
     _ListForm.generateODataQuery = function (info, loadAttachments) {
         if (loadAttachments === void 0) { loadAttachments = false; }
@@ -14364,8 +14773,8 @@ var _ListForm = /** @class */ (function () {
                     // See if this is an taxonomy field
                     if (field.TypeAsString.startsWith("TaxonomyFieldType")) {
                         // Parse the fields
-                        for (var fieldName_1 in info.fields) {
-                            var valueField = info.fields[fieldName_1];
+                        for (var fieldName_2 in info.fields) {
+                            var valueField = info.fields[fieldName_2];
                             // See if this is the value field
                             if (valueField.InternalName == field.InternalName + "_0" || valueField.Title == field.InternalName + "_0") {
                                 // Include the value field
@@ -14602,51 +15011,17 @@ exports.ListFormField = _ListFormField;
 Object.defineProperty(exports, "__esModule", { value: true });
 var gd_sprest_1 = __webpack_require__(3);
 var fabric_1 = __webpack_require__(1);
-var _1 = __webpack_require__(6);
+var _1 = __webpack_require__(8);
 /**
  * Item Form
  */
 exports.ListFormPanel = function (props) {
-    /**
-     * Edit Form
-     */
-    var _fields = [];
+    var _formDisplay = null;
+    var _formEdit = null;
     var _formInfo = null;
     /**
-     * Render Form
+     * Methods
      */
-    // Render the form
-    var renderForm = function (controlMode) {
-        if (controlMode === void 0) { controlMode = gd_sprest_1.SPTypes.ControlMode.Display; }
-        // Render the menu
-        renderMenu(controlMode);
-        // Update the panel content
-        var content = _panel.updateContent([
-            '<div class="ms-ListForm">',
-            '<label class="ms-Label ms-fontColor-redDark form-error error"></label>',
-            '<div></div>',
-            '</div>'
-        ].join('\n'));
-        // Get the form element
-        var elForm = content.children[0].children[1];
-        // See if this is a new/edit form
-        if (controlMode == gd_sprest_1.SPTypes.ControlMode.Edit || controlMode == gd_sprest_1.SPTypes.ControlMode.New) {
-            // Render the edit form
-            _fields = _1.ListForm.renderEditForm({
-                el: elForm,
-                info: _formInfo,
-            });
-        }
-        else {
-            // Render the display form
-            _1.ListForm.renderDisplayForm({
-                el: elForm,
-                info: _formInfo
-            });
-        }
-        // Add the menu click event
-        addMenuClickEvents();
-    };
     // Add the menu click events
     var addMenuClickEvents = function () {
         var buttons = null;
@@ -14688,8 +15063,6 @@ exports.ListFormPanel = function (props) {
         for (var i = 0; i < buttons.length; i++) {
             // Add a click event
             buttons[i].addEventListener("click", function (ev) {
-                var formValues = {};
-                var unknownUsers = {};
                 // Disable postback
                 ev ? ev.preventDefault() : null;
                 // Validate the form
@@ -14709,135 +15082,8 @@ exports.ListFormPanel = function (props) {
                     el: content,
                     text: "Saving the item..."
                 });
-                // Parse the fields
-                for (var i_1 = 0; i_1 < _fields.length; i_1++) {
-                    var field = _fields[i_1];
-                    var fieldName = field.fieldInfo.name;
-                    var fieldValue = field.element.getValue();
-                    // Update the field name/value, based on the type
-                    switch (field.fieldInfo.type) {
-                        // Choice
-                        case gd_sprest_1.SPTypes.FieldType.Choice:
-                            // Update the field value
-                            fieldValue = fieldValue ? fieldValue.value : fieldValue;
-                            break;
-                        // Lookup
-                        case gd_sprest_1.SPTypes.FieldType.Lookup:
-                            // Append 'Id' to the field name
-                            fieldName += fieldName.lastIndexOf("Id") == fieldName.length - 2 ? "" : "Id";
-                            // See if this is a multi-value field
-                            if (field.fieldInfo.multi) {
-                                var values = fieldValue || [];
-                                fieldValue = { results: [] };
-                                // Parse the options
-                                for (var j = 0; j < values.length; j++) {
-                                    // Add the value
-                                    fieldValue.results.push(values[j].value);
-                                }
-                            }
-                            else {
-                                // Update the field value
-                                fieldValue = fieldValue ? fieldValue.value : fieldValue;
-                            }
-                            break;
-                        // Multi-Choice
-                        case gd_sprest_1.SPTypes.FieldType.MultiChoice:
-                            var options = fieldValue || [];
-                            fieldValue = { results: [] };
-                            // Parse the options
-                            for (var j = 0; j < options.length; j++) {
-                                // Add the option
-                                fieldValue.results.push(options[j].value);
-                            }
-                            break;
-                        // URL
-                        case gd_sprest_1.SPTypes.FieldType.URL:
-                            // See if the field value exists
-                            if (fieldValue) {
-                                // Add the metadata
-                                fieldValue.__metadata = { type: "SP.FieldUrlValue" };
-                            }
-                            break;
-                        // User
-                        case gd_sprest_1.SPTypes.FieldType.User:
-                            // Append 'Id' to the field name
-                            fieldName += fieldName.lastIndexOf("Id") == fieldName.length - 2 ? "" : "Id";
-                            // See if this is a multi-value field
-                            if (field.fieldInfo.multi) {
-                                var values = fieldValue || [];
-                                fieldValue = { results: [] };
-                                // Parse the options
-                                for (var j = 0; j < values.length; j++) {
-                                    var userValue = values[j];
-                                    if (userValue && userValue.EntityData) {
-                                        // Ensure the user or group id exists
-                                        if (userValue.EntityData.SPGroupID || userValue.EntityData.SPUserID) {
-                                            // Update the field value
-                                            fieldValue.results.push(userValue.EntityData.SPUserID || userValue.EntityData.SPGroupID);
-                                        }
-                                        else {
-                                            // Add the unknown user account
-                                            unknownUsers[fieldName] = unknownUsers[fieldName] || [];
-                                            unknownUsers[fieldName].push(userValue.Key);
-                                        }
-                                    }
-                                }
-                            }
-                            else {
-                                var userValue = fieldValue ? fieldValue[0] : null;
-                                if (userValue && userValue.EntityData) {
-                                    // Ensure the user or group id exists
-                                    if (userValue.EntityData.SPGroupID || userValue.EntityData.SPUserID) {
-                                        // Update the field value
-                                        fieldValue = userValue.EntityData.SPUserID || userValue.EntityData.SPGroupID;
-                                    }
-                                    else {
-                                        // Add the unknown user account
-                                        unknownUsers[fieldName] = unknownUsers[fieldName] || [];
-                                        unknownUsers[fieldName].push(userValue.Key);
-                                    }
-                                }
-                                else {
-                                    // Clear the field value
-                                    fieldValue = null;
-                                }
-                            }
-                            break;
-                        // MMS
-                        default:
-                            if (field.fieldInfo.typeAsString.startsWith("TaxonomyFieldType")) {
-                                // See if this is a multi field
-                                if (field.fieldInfo.typeAsString.endsWith("Multi")) {
-                                    // Update the field name to the value field
-                                    fieldName = field.fieldInfo.valueField.InternalName;
-                                    // Parse the field values
-                                    var fieldValues = fieldValue || [];
-                                    fieldValue = [];
-                                    for (var j = 0; j < fieldValues.length; j++) {
-                                        var termInfo = fieldValues[j];
-                                        // Add the field value
-                                        fieldValue.push(-1 + ";#" + termInfo.text + "|" + termInfo.value);
-                                    }
-                                    // Set the field value
-                                    fieldValue = fieldValue.join(";#");
-                                }
-                                else {
-                                    // Update the value
-                                    fieldValue = fieldValue ? {
-                                        __metadata: { type: "SP.Taxonomy.TaxonomyFieldValue" },
-                                        Label: fieldValue.text,
-                                        TermGuid: fieldValue.value,
-                                        WssId: -1
-                                    } : fieldValue;
-                                }
-                            }
-                            break;
-                    }
-                    // Set the field value
-                    formValues[fieldName] = fieldValue;
-                }
-                // Ensure the user accounts exist
-                ensureUserAccounts(unknownUsers, formValues).then(function (formValues) {
+                // Get the form values
+                _formEdit.getValues().then(function (formValues) {
                     // Save the item
                     _1.ListForm.saveItem(_formInfo, formValues).then(function (formInfo) {
                         // Update the form info
@@ -14849,52 +15095,40 @@ exports.ListFormPanel = function (props) {
             });
         }
     };
-    // Method to ensure the user accounts exist
-    var ensureUserAccounts = function (userAccounts, formValues) {
-        // Return a promise
-        return new Promise(function (resolve, reject) {
-            var web = new gd_sprest_1.Web();
-            // Parse the field names
-            for (var fieldName in userAccounts) {
-                // Parse the user accounts
-                for (var i = 0; i < userAccounts[fieldName].length; i++) {
-                    // Ensure this user account exists
-                    web.ensureUser(userAccounts[fieldName][i]).execute(true);
-                }
-            }
-            // Wait for the requests to complete
-            web.done(function () {
-                var args = [];
-                for (var _i = 0; _i < arguments.length; _i++) {
-                    args[_i] = arguments[_i];
-                }
-                // Parse the field names
-                for (var fieldName in userAccounts) {
-                    // Parse the user accounts
-                    for (var i = 0; i < userAccounts[fieldName].length; i++) {
-                        var userLogin = userAccounts[fieldName][i];
-                        // Parse the responses
-                        for (var j = 0; j < args.length; j++) {
-                            var user = args[j];
-                            // See if this is the user
-                            if (user.LoginName == userLogin) {
-                                // See if this is a multi-user value
-                                if (formValues[fieldName].results != null) {
-                                    // Set the user account
-                                    formValues[fieldName].push(user.Id);
-                                }
-                                else {
-                                    // Set the user account
-                                    formValues[fieldName] = user.Id;
-                                }
-                            }
-                        }
-                    }
-                }
-                // Resolve the promise
-                resolve(formValues);
+    // Render the form
+    var renderForm = function (controlMode) {
+        if (controlMode === void 0) { controlMode = gd_sprest_1.SPTypes.ControlMode.Display; }
+        // Clear the form references
+        _formDisplay = null;
+        _formEdit = null;
+        // Render the menu
+        renderMenu(controlMode);
+        // Update the panel content
+        var content = _panel.updateContent([
+            '<div class="ms-ListForm">',
+            '<label class="ms-Label ms-fontColor-redDark form-error error"></label>',
+            '<div></div>',
+            '</div>'
+        ].join('\n'));
+        // Get the form element
+        var elForm = content.children[0].children[1];
+        // See if this is a new/edit form
+        if (controlMode == gd_sprest_1.SPTypes.ControlMode.Edit || controlMode == gd_sprest_1.SPTypes.ControlMode.New) {
+            // Render the edit form
+            _formEdit = _1.ListForm.renderEditForm({
+                el: elForm,
+                info: _formInfo,
             });
-        });
+        }
+        else {
+            // Render the display form
+            _formDisplay = _1.ListForm.renderDisplayForm({
+                el: elForm,
+                info: _formInfo
+            });
+        }
+        // Add the menu click event
+        addMenuClickEvents();
     };
     // Render the menu
     var renderMenu = function (controlMode) {
@@ -15009,6 +15243,7 @@ exports.ListFormPanel = function (props) {
     });
     // Return the panel
     return {
+        getForm: function () { return _formDisplay || _formEdit; },
         show: function (controlMode) {
             if (controlMode === void 0) { controlMode = gd_sprest_1.SPTypes.ControlMode.Display; }
             // See if the panel is open
@@ -15418,7 +15653,7 @@ exports.WebPart = function (props) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var gd_sprest_1 = __webpack_require__(3);
-var __1 = __webpack_require__(7);
+var __1 = __webpack_require__(5);
 var _1 = __webpack_require__(9);
 /**
  * List WebPart
@@ -15668,7 +15903,7 @@ exports.WPList = function (props) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var gd_sprest_1 = __webpack_require__(3);
-var __1 = __webpack_require__(7);
+var __1 = __webpack_require__(5);
 var _1 = __webpack_require__(9);
 /**
  * Search WebPart
