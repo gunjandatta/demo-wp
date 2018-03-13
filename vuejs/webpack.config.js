@@ -1,17 +1,12 @@
 var path = require('path');
-var webpack = require("webpack");
 
 module.exports = {
-    // Target the output of the typescript compiler
-    context: path.join(__dirname, "src"),
-
     // File to target
-    entry: './index.js',
+    entry: './src/index.js',
 
     // Output
     output: {
-        filename: 'demo-vue.js',
-        path: path.resolve(__dirname, 'dist')
+        filename: 'demo-vue.js'
     },
 
     // Resolve the file extensions
@@ -19,15 +14,23 @@ module.exports = {
         alias: {
             vue: "vue/dist/vue.js"
         },
-        extensions: [".js", ".vue"]
+        extensions: [".css", ".js", ".vue"]
     },
 
     // Module to define what libraries with the compiler
     module: {
-        // Loaders
-        loaders: [
+        // Rules
+        rules: [
+            // CSS Files
             {
-                // Target the vue files
+                test: /\.css$/,
+                use: [
+                    { loader: "style-loader" },
+                    { loader: "css-loader" }
+                ]
+            },
+            // VueJS Files
+            {
                 test: /\.vue$/,
                 // Exclude the npm libraries
                 exclude: /node_modules/,
