@@ -10,7 +10,6 @@ import "gd-sprest-js/build/lib/css/gd-sprest-js.css";
 
 // Local
 import { Configuration } from "./cfg";
-import WebPart from "./wp.vue";
 
 /**
  * Vue JS Demo

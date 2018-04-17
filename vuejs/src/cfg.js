@@ -5,7 +5,7 @@ var $REST = require("gd-sprest");
  */
 export const Configuration = {
     // List
-    List: new $REST.Helper.SPConfig({
+    List: $REST.Helper.SPConfig({
         ListCfg: [{
             CustomFields: [
                 {
@@ -33,7 +33,7 @@ export const Configuration = {
     }),
 
     // WebPart
-    WebPart: new $REST.Helper.SPConfig({
+    WebPart: $REST.Helper.SPConfig({
         WebPartCfg: [
             {
                 FileName: "wpContacts_vuejs.webpart",
@@ -66,7 +66,7 @@ export const Configuration = {
 };
 
 // Create the test data function
-Configuration.List.createTestData = () => {
+Configuration.List["createTestData"] = () => {
     // Test Data
     let data = [
         {

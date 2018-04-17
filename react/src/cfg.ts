@@ -5,7 +5,7 @@ import { Helper, List, SPTypes, Types } from "gd-sprest";
  */
 export const Configuration = {
     // List
-    List: new Helper.SPConfig({
+    List: Helper.SPConfig({
         ListCfg: [
             {
                 // Custom fields for this list
@@ -45,7 +45,7 @@ export const Configuration = {
     }),
 
     // WebPart
-    WebPart: new Helper.SPConfig({
+    WebPart: Helper.SPConfig({
         WebPartCfg: [
             {
                 FileName: "wpContacts.webpart",
@@ -78,7 +78,7 @@ export const Configuration = {
 };
 
 // Method to add list test data
-Configuration.List.addTestData = () => {
+Configuration.List["addTestData"] = () => {
     // Get the list
     let list = new List("My Contacts");
 
