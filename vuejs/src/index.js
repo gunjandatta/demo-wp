@@ -27,6 +27,7 @@ window["VueJSDemo"] = {
             },
             cfgElementId: "wp-vuejs-cfg",
             elementId: "wp-vuejs",
+            wpClassName: "fabric",
             onRenderItems: function (wpInfo, items) {
                 /* Render the webpart */
                 new Vue({

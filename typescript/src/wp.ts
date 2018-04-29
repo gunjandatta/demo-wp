@@ -27,7 +27,8 @@ export class DemoWebPart {
             },
             cfgElementId: "demo-cfg",
             elementId: "demo",
-            onRenderItems: this.renderItems
+            onRenderItems: this.renderItems,
+            wpClassName: "fabric"
         });
     }
 

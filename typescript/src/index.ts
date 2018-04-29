@@ -1,6 +1,4 @@
-import "gd-sprest-js/build/lib/css/fabric.min.css";
 import "gd-sprest-js/build/lib/css/fabric.components.min.css";
-import "gd-sprest-js/build/lib/css/gd-sprest-js.css";
 import { DemoWebPart } from "./wp";
 
 // Add the global variable
