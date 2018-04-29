@@ -25,7 +25,7 @@ module.exports = {
         loaders: [
             {
                 // Target the sass files
-                test: /\.scss?$/,
+                test: /\.s?css?$/,
                 // Define the compiler to use
                 use: [
                     // Create style nodes from the CommonJS code

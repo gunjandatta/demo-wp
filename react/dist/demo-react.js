@@ -681,7 +681,7 @@ __export(__webpack_require__(606));
 __export(__webpack_require__(607));
 var Types = __webpack_require__(608);
 exports.Types = Types;
-//# sourceMappingURL=index.js.map
+
 
 /***/ }),
 /* 6 */
@@ -738,7 +738,7 @@ var Types = __webpack_require__(634);
 exports.Types = Types;
 __export(__webpack_require__(11));
 __export(__webpack_require__(635));
-//# sourceMappingURL=index.js.map
+
 
 /***/ }),
 /* 8 */
@@ -855,7 +855,7 @@ __export(__webpack_require__(618));
 __export(__webpack_require__(234));
 var Types = __webpack_require__(619);
 exports.Types = Types;
-//# sourceMappingURL=index.js.map
+
 
 /***/ }),
 /* 12 */
@@ -909,7 +909,7 @@ __export(__webpack_require__(652));
 __export(__webpack_require__(653));
 var Types = __webpack_require__(654);
 exports.Types = Types;
-//# sourceMappingURL=index.js.map
+
 
 /***/ }),
 /* 15 */
@@ -2486,7 +2486,7 @@ __export(__webpack_require__(664));
 __export(__webpack_require__(665));
 var Types = __webpack_require__(666);
 exports.Types = Types;
-//# sourceMappingURL=index.js.map
+
 
 /***/ }),
 /* 40 */
@@ -2512,7 +2512,7 @@ __export(__webpack_require__(655));
 __export(__webpack_require__(656));
 var Types = __webpack_require__(657);
 exports.Types = Types;
-//# sourceMappingURL=index.js.map
+
 
 /***/ }),
 /* 42 */
@@ -2918,7 +2918,7 @@ var SPTypes = __webpack_require__(595);
 exports.SPTypes = SPTypes;
 var Types = __webpack_require__(596);
 exports.Types = Types;
-//# sourceMappingURL=index.js.map
+
 
 /***/ }),
 /* 51 */
@@ -4298,7 +4298,7 @@ var SP = __webpack_require__(632);
 exports.SP = SP;
 var Types = __webpack_require__(633);
 exports.Types = Types;
-//# sourceMappingURL=index.js.map
+
 
 /***/ }),
 /* 74 */
@@ -4318,7 +4318,7 @@ var WebParts = __webpack_require__(39);
 exports.WebParts = WebParts;
 var Types = __webpack_require__(667);
 exports.Types = Types;
-//# sourceMappingURL=index.js.map
+
 
 /***/ }),
 /* 75 */
@@ -15359,7 +15359,7 @@ var _Web = /** @class */ (function (_super) {
     return _Web;
 }(utils_1.Base));
 exports.Web = _Web;
-//# sourceMappingURL=web.js.map
+
 
 /***/ }),
 /* 235 */
@@ -16470,7 +16470,7 @@ exports.SPConfig = function (cfg, webUrl) {
         }
     };
 };
-//# sourceMappingURL=spCfg.js.map
+
 
 /***/ }),
 /* 236 */
@@ -16484,7 +16484,7 @@ function __export(m) {
 Object.defineProperty(exports, "__esModule", { value: true });
 __export(__webpack_require__(646));
 __export(__webpack_require__(647));
-//# sourceMappingURL=index.js.map
+
 
 /***/ }),
 /* 237 */
@@ -17443,7 +17443,7 @@ var BasePanel = /** @class */ (function (_super) {
     return BasePanel;
 }(React.Component));
 exports.BasePanel = BasePanel;
-//# sourceMappingURL=basePanel.js.map
+
 
 /***/ }),
 /* 268 */
@@ -58452,7 +58452,7 @@ var Field = /** @class */ (function (_super) {
     return Field;
 }(Fields.BaseField));
 exports.Field = Field;
-//# sourceMappingURL=field.js.map
+
 
 /***/ }),
 /* 578 */
@@ -58764,7 +58764,7 @@ exports.App = {
         });
     }
 };
-//# sourceMappingURL=app.js.map
+
 
 /***/ }),
 /* 579 */
@@ -58783,7 +58783,7 @@ var _ContextInfo = /** @class */ (function () {
     Object.defineProperty(_ContextInfo, "_contextInfo", {
         // The current context information
         get: function () {
-            return this.window["_spPageContextInfo"] ||
+            return this.window["_spPageContextInfo"] || (this._spfxPageContext && this._spfxPageContext.legacyPageContext) ||
                 {
                     existsFl: false,
                     isAppWeb: false,
@@ -59344,6 +59344,8 @@ var _ContextInfo = /** @class */ (function () {
             return v.toString(16);
         });
     };
+    // The page context information from an spfx project
+    _ContextInfo._spfxPageContext = null;
     // Method to get the context information for a web
     _ContextInfo.getWeb = function (url) {
         // Create a new base object
@@ -59353,10 +59355,12 @@ var _ContextInfo = /** @class */ (function () {
             url: url
         });
     };
+    // Method to set the page context information from an SPFX project
+    _ContextInfo.setPageContext = function (spfxPageContext) { exports.ContextInfo["_spfxPageContext"] = spfxPageContext; };
     return _ContextInfo;
 }());
 exports.ContextInfo = _ContextInfo;
-//# sourceMappingURL=contextInfo.js.map
+
 
 /***/ }),
 /* 580 */
@@ -59390,7 +59394,7 @@ exports.RequestType = {
     PostWithArgsValueOnly: 24,
     PostReplace: 25
 };
-//# sourceMappingURL=requestType.js.map
+
 
 /***/ }),
 /* 581 */
@@ -59664,7 +59668,7 @@ var BaseHelper = /** @class */ (function () {
     return BaseHelper;
 }());
 exports.BaseHelper = BaseHelper;
-//# sourceMappingURL=baseHelper.js.map
+
 
 /***/ }),
 /* 582 */
@@ -59688,7 +59692,7 @@ __export(__webpack_require__(591));
 __export(__webpack_require__(592));
 __export(__webpack_require__(593));
 __export(__webpack_require__(594));
-//# sourceMappingURL=mapper.js.map
+
 
 /***/ }),
 /* 583 */
@@ -59708,7 +59712,7 @@ exports.audit = {
         requestType: utils_1.RequestType.OData
     }
 };
-//# sourceMappingURL=audit.js.map
+
 
 /***/ }),
 /* 584 */
@@ -59756,7 +59760,7 @@ exports.eventreceivers = {
         requestType: utils_1.RequestType.OData
     }
 };
-//# sourceMappingURL=eventReceiver.js.map
+
 
 /***/ }),
 /* 585 */
@@ -60078,7 +60082,7 @@ exports.limitedwebpartmanager = {
         requestType: utils_1.RequestType.GetReplace
     }
 };
-//# sourceMappingURL=file.js.map
+
 
 /***/ }),
 /* 586 */
@@ -60622,7 +60626,7 @@ exports.views = {
         requestType: utils_1.RequestType.OData
     }
 };
-//# sourceMappingURL=list.js.map
+
 
 /***/ }),
 /* 587 */
@@ -60652,7 +60656,7 @@ exports.navigationservicerest = {
         RequestType: utils_1.RequestType.GetWithArgsInQS
     }
 };
-//# sourceMappingURL=navigation.js.map
+
 
 /***/ }),
 /* 588 */
@@ -60672,7 +60676,7 @@ exports.propertyvalues = {
         requestType: utils_1.RequestType.OData
     }
 };
-//# sourceMappingURL=propertyValues.js.map
+
 
 /***/ }),
 /* 589 */
@@ -60692,7 +60696,7 @@ exports.search = {
         requestType: utils_1.RequestType.PostWithArgsInBody
     }
 };
-//# sourceMappingURL=search.js.map
+
 
 /***/ }),
 /* 590 */
@@ -60793,7 +60797,7 @@ exports.roledefinitions = {
         requestType: utils_1.RequestType.OData
     }
 };
-//# sourceMappingURL=security.js.map
+
 
 /***/ }),
 /* 591 */
@@ -61302,7 +61306,7 @@ exports.webs = {
         requestType: utils_1.RequestType.OData
     }
 };
-//# sourceMappingURL=site.js.map
+
 
 /***/ }),
 /* 592 */
@@ -61318,15 +61322,17 @@ var utils_1 = __webpack_require__(5);
 exports.peoplemanager = {
     amIFollowedBy: {
         argNames: ["accountName"],
-        requestType: utils_1.RequestType.GetWithArgsInQS
+        name: "amIFollowedBy(@v)?@v='[[accountName]]'",
+        requestType: utils_1.RequestType.GetReplace
     },
     amIFollowing: {
-        argNames: ["accountName"],
-        requestType: utils_1.RequestType.GetWithArgsInQS
+        name: "amIFollowing(@v)?@v='[[accountName]]'",
+        requestType: utils_1.RequestType.GetReplace
     },
     follow: {
         argNames: ["accountName"],
-        requestType: utils_1.RequestType.PostWithArgsInQS
+        name: "follow(@v)?@v='[[accountName]]'",
+        requestType: utils_1.RequestType.PostReplace
     },
     followTag: {
         argNames: ["id"],
@@ -61338,7 +61344,8 @@ exports.peoplemanager = {
     },
     getFollowersFor: {
         argNames: ["accountName"],
-        requestType: utils_1.RequestType.GetWithArgsInQS
+        name: "getFollowersFor(@v)?@v='[[accountName]]'",
+        requestType: utils_1.RequestType.GetReplace
     },
     getMyFollowers: {
         requestType: utils_1.RequestType.Get
@@ -61351,14 +61358,16 @@ exports.peoplemanager = {
     },
     getPeopleFollowedBy: {
         argNames: ["accountName"],
-        requestType: utils_1.RequestType.GetWithArgsInQS
+        name: "getPeopleFollowedBy(@v)?@v='[[accountName]]'",
+        requestType: utils_1.RequestType.GetReplace
     },
     getPeopleFollowedByMe: {
         requestType: utils_1.RequestType.Get
     },
     getPropertiesFor: {
         argNames: ["accountName"],
-        requestType: utils_1.RequestType.GetWithArgsInQS
+        name: "getPropertiesFor(@v)?@v='[[accountName]]'",
+        requestType: utils_1.RequestType.GetReplace
     },
     getTrendingTags: {
         name: "sp.userprofiles.peoplemanager.gettrendingtags",
@@ -61367,23 +61376,26 @@ exports.peoplemanager = {
     },
     getUserProfilePropertyFor: {
         argNames: ["accountName", "propertyName"],
-        requestType: utils_1.RequestType.GetWithArgsInQS
+        name: "getUserProfilePropertyFor(accountname=@v, propertyname='[[propertyName]]')?@v='[[accountName]]'",
+        requestType: utils_1.RequestType.GetReplace
     },
     hideSuggestion: {
         argNames: ["accountName"],
-        requestType: utils_1.RequestType.PostWithArgsInQS
+        name: "hideSuggestion(@v)?@v='[[accountName]]'",
+        requestType: utils_1.RequestType.PostReplace
     },
     isFollowing: {
         argNames: ["possibleFollowerAccountName", "possibleFolloweeAccountName"],
-        name: "sp.userprofiles.peoplemanager.isfollowing",
+        name: "sp.userprofiles.peoplemanager.isfollowing(possiblefolloweraccountname=@v, possiblefolloweeaccountname=@y)?@v='[[possibleFollowerAccountName]]'&@y='[[possibleFolloweeAccountName]]'",
         replaceEndpointFl: true,
-        requestType: utils_1.RequestType.GetWithArgsInQS
+        requestType: utils_1.RequestType.GetReplace
     },
     setMyProfilePicture: {
         requestType: utils_1.RequestType.PostWithArgsInBody
     },
     stopFollowing: {
         argNames: ["accountName"],
+        name: "stopFollowing(@v)?@v='[[accountName]]'",
         requestType: utils_1.RequestType.PostWithArgsInQS
     },
     stopFollowingTag: {
@@ -61471,13 +61483,15 @@ exports.userprofile = {
     // Methods
     /*********************************************************************************************************************************/
     createPersonalSiteEnque: {
+        argNames: ["interactiveMode"],
         requestType: utils_1.RequestType.PostWithArgsValueOnly
     },
     shareAllSocialData: {
+        argNames: ["makePublic"],
         requestType: utils_1.RequestType.PostWithArgsValueOnly
     }
 };
-//# sourceMappingURL=social.js.map
+
 
 /***/ }),
 /* 593 */
@@ -61632,7 +61646,7 @@ exports.users = {
         requestType: utils_1.RequestType.PostReplace
     }
 };
-//# sourceMappingURL=user.js.map
+
 
 /***/ }),
 /* 594 */
@@ -61682,7 +61696,7 @@ exports.usercustomactions = {
         requestType: utils_1.RequestType.OData
     }
 };
-//# sourceMappingURL=userCustomAction.js.map
+
 
 /***/ }),
 /* 595 */
@@ -62235,7 +62249,7 @@ exports.ViewType = {
     Html: 1,
     Recurrence: 8193
 };
-//# sourceMappingURL=sptypes.js.map
+
 
 /***/ }),
 /* 596 */
@@ -62250,7 +62264,7 @@ var Results = __webpack_require__(598);
 exports.Results = Results;
 var SPTypes = __webpack_require__(599);
 exports.SPTypes = SPTypes;
-//# sourceMappingURL=index.js.map
+
 
 /***/ }),
 /* 597 */
@@ -62259,7 +62273,7 @@ exports.SPTypes = SPTypes;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-//# sourceMappingURL=complexTypes.js.map
+
 
 /***/ }),
 /* 598 */
@@ -62268,7 +62282,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-//# sourceMappingURL=results.js.map
+
 
 /***/ }),
 /* 599 */
@@ -62277,7 +62291,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-//# sourceMappingURL=sptypes.js.map
+
 
 /***/ }),
 /* 600 */
@@ -62523,6 +62537,7 @@ var BaseRequest = /** @class */ (function (_super) {
         var _this = this;
         // Return a promise
         return new Promise(function (resolve, reject) {
+            // Method to validate the request
             var request = function (xhr, resolve) {
                 // Validate the response
                 if (xhr && xhr.status < 400 && typeof (xhr.response) === "string" && xhr.response.length > 0) {
@@ -62550,8 +62565,10 @@ var BaseRequest = /** @class */ (function (_super) {
                                     // Validate the data collection
                                     request(xhr, resolve);
                                 }
-                                // Resolve the promise
-                                resolve();
+                                else {
+                                    // Resolve the promise
+                                    resolve();
+                                }
                             });
                         }
                         else {
@@ -62578,7 +62595,7 @@ var BaseRequest = /** @class */ (function (_super) {
     return BaseRequest;
 }(_1.BaseHelper));
 exports.BaseRequest = BaseRequest;
-//# sourceMappingURL=baseRequest.js.map
+
 
 /***/ }),
 /* 601 */
@@ -62760,7 +62777,7 @@ var BaseExecution = /** @class */ (function (_super) {
     return BaseExecution;
 }(_1.BaseRequest));
 exports.BaseExecution = BaseExecution;
-//# sourceMappingURL=baseExecution.js.map
+
 
 /***/ }),
 /* 602 */
@@ -62842,7 +62859,7 @@ var Base = /** @class */ (function (_super) {
     return Base;
 }(_1.BaseExecution));
 exports.Base = Base;
-//# sourceMappingURL=base.js.map
+
 
 /***/ }),
 /* 603 */
@@ -62939,7 +62956,7 @@ var Batch = /** @class */ (function () {
     return Batch;
 }());
 exports.Batch = Batch;
-//# sourceMappingURL=batch.js.map
+
 
 /***/ }),
 /* 604 */
@@ -63194,7 +63211,7 @@ var MethodInfo = /** @class */ (function () {
     return MethodInfo;
 }());
 exports.MethodInfo = MethodInfo;
-//# sourceMappingURL=methodInfo.js.map
+
 
 /***/ }),
 /* 605 */
@@ -63320,7 +63337,7 @@ var OData = /** @class */ (function () {
     return OData;
 }());
 exports.OData = OData;
-//# sourceMappingURL=oData.js.map
+
 
 /***/ }),
 /* 606 */
@@ -63413,7 +63430,7 @@ var TargetInfo = /** @class */ (function () {
         var qs = (endpoint.indexOf("?") === -1 ? "?" : "&") + "@target='{{Target}}'";
         var template = "{{Url}}/_api/{{EndPoint}}{{TargetUrl}}";
         // See if we are defaulting the url for the app web
-        if (lib_1.ContextInfo.existsFl && lib_1.ContextInfo.window.$REST.DefaultRequestToHostFl && lib_1.ContextInfo.isAppWeb && !this.request.overrideDefaultRequestToHostFl && this.request.url == null) {
+        if (lib_1.ContextInfo.existsFl && lib_1.ContextInfo.window.$REST && lib_1.ContextInfo.window.$REST.DefaultRequestToHostFl && lib_1.ContextInfo.isAppWeb && !this.request.overrideDefaultRequestToHostFl && this.request.url == null) {
             // Default the url to the host web
             this.request.url = hostUrl;
         }
@@ -63461,7 +63478,7 @@ var TargetInfo = /** @class */ (function () {
     return TargetInfo;
 }());
 exports.TargetInfo = TargetInfo;
-//# sourceMappingURL=targetInfo.js.map
+
 
 /***/ }),
 /* 607 */
@@ -63555,7 +63572,7 @@ var XHRRequest = /** @class */ (function () {
         throw new Error("This browser does not support xml http requests.");
     };
     // Method to default the request headers
-    XHRRequest.prototype.defaultHeaders = function () {
+    XHRRequest.prototype.defaultHeaders = function (requestDigest) {
         // See if the custom headers exist
         if (this.targetInfo.requestHeaders) {
             // Parse the custom headers
@@ -63571,18 +63588,8 @@ var XHRRequest = /** @class */ (function () {
         }
         // Set the method
         this.xhr.setRequestHeader("X-HTTP-Method", this.targetInfo.requestMethod);
-        // See if the request digest has been defined
-        if (this.targetInfo.request.requestDigest) {
-            // Set the request digest
-            this.xhr.setRequestHeader("X-RequestDigest", this.targetInfo.request.requestDigest);
-        }
-        else {
-            // Get the request digest
-            var requestDigest = lib_1.ContextInfo.document ? lib_1.ContextInfo.document.querySelector("#__REQUESTDIGEST") : "";
-            requestDigest = requestDigest ? requestDigest.value : "";
-            // Set the request digest
-            this.xhr.setRequestHeader("X-RequestDigest", requestDigest);
-        }
+        // Set the request digest
+        this.xhr.setRequestHeader("X-RequestDigest", requestDigest);
         // See if we are deleting or updating the data
         if (this.targetInfo.requestMethod == "DELETE" || this.targetInfo.requestMethod == "MERGE") {
             // Append the header for deleting/updating
@@ -63591,6 +63598,39 @@ var XHRRequest = /** @class */ (function () {
     };
     // Method to execute the xml http request
     XHRRequest.prototype.execute = function () {
+        var _this = this;
+        var requestDigest = this.targetInfo.request.requestDigest || "";
+        if (requestDigest == "") {
+            // Get the request digest
+            requestDigest = lib_1.ContextInfo.document ? lib_1.ContextInfo.document.querySelector("#__REQUESTDIGEST") : "";
+            requestDigest = requestDigest ? requestDigest.value : "";
+        }
+        // See if we are targeting the context endpoint
+        if (this.targetInfo.request.endpoint == "contextinfo") {
+            // Execute the request
+            this.executeRequest(requestDigest);
+        }
+        else if (this.targetInfo.requestMethod != "GET" && requestDigest == "") {
+            // See if this is a synchronous request
+            if (!this.asyncFl) {
+                // Log
+                console.info("[gd-sprest] POST requests must include the request digest information for synchronous requests. This is due to the modern page not including this information on the page.");
+            }
+            else {
+                // Get the context information
+                lib_1.ContextInfo.getWeb(this.targetInfo.request.url || document.location.pathname.substr(0, document.location.pathname.lastIndexOf('/'))).execute(function (contextInfo) {
+                    // Execute the request
+                    _this.executeRequest(contextInfo.GetContextWebInformation.FormDigestValue);
+                });
+            }
+        }
+        else {
+            // Execute the request
+            this.executeRequest(requestDigest);
+        }
+    };
+    // Method to execute the xml http request
+    XHRRequest.prototype.executeRequest = function (requestDigest) {
         var _this = this;
         // Ensure the xml http request exists
         if (this.xhr == null) {
@@ -63617,7 +63657,7 @@ var XHRRequest = /** @class */ (function () {
         }
         else {
             // Default the headers
-            this.defaultHeaders();
+            this.defaultHeaders(requestDigest);
             // Ensure the arguments passed is defaulted as a string, unless it's an array buffer
             if (this.targetInfo.requestData && typeof (this.targetInfo.requestData) !== "string") {
                 // Stringify the data object, if it's not an array buffer
@@ -63630,7 +63670,7 @@ var XHRRequest = /** @class */ (function () {
     return XHRRequest;
 }());
 exports.XHRRequest = XHRRequest;
-//# sourceMappingURL=xhrRequest.js.map
+
 
 /***/ }),
 /* 608 */
@@ -63639,7 +63679,7 @@ exports.XHRRequest = XHRRequest;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-//# sourceMappingURL=index.js.map
+
 
 /***/ }),
 /* 609 */
@@ -63703,7 +63743,7 @@ var _List = /** @class */ (function (_super) {
     return _List;
 }(utils_1.Base));
 exports.List = _List;
-//# sourceMappingURL=list.js.map
+
 
 /***/ }),
 /* 610 */
@@ -63750,7 +63790,7 @@ var _Navigation = /** @class */ (function (_super) {
     return _Navigation;
 }(utils_1.Base));
 exports.Navigation = _Navigation;
-//# sourceMappingURL=navigation.js.map
+
 
 /***/ }),
 /* 611 */
@@ -63792,7 +63832,7 @@ var _PeopleManager = /** @class */ (function (_super) {
     return _PeopleManager;
 }(utils_1.Base));
 exports.PeopleManager = _PeopleManager;
-//# sourceMappingURL=peopleManager.js.map
+
 
 /***/ }),
 /* 612 */
@@ -63835,7 +63875,7 @@ var _PeoplePicker = /** @class */ (function (_super) {
     return _PeoplePicker;
 }(utils_1.Base));
 exports.PeoplePicker = _PeoplePicker;
-//# sourceMappingURL=peoplePicker.js.map
+
 
 /***/ }),
 /* 613 */
@@ -63878,7 +63918,7 @@ var _ProfileLoader = /** @class */ (function (_super) {
     return _ProfileLoader;
 }(utils_1.Base));
 exports.ProfileLoader = _ProfileLoader;
-//# sourceMappingURL=profileLoader.js.map
+
 
 /***/ }),
 /* 614 */
@@ -63957,7 +63997,7 @@ var _Search = /** @class */ (function (_super) {
     return _Search;
 }(utils_1.Base));
 exports.Search = _Search;
-//# sourceMappingURL=search.js.map
+
 
 /***/ }),
 /* 615 */
@@ -64014,7 +64054,7 @@ var _Site = /** @class */ (function (_super) {
     return _Site;
 }(utils_1.Base));
 exports.Site = _Site;
-//# sourceMappingURL=site.js.map
+
 
 /***/ }),
 /* 616 */
@@ -64083,7 +64123,7 @@ var _SocialFeed = /** @class */ (function (_super) {
     return _SocialFeed;
 }(utils_1.Base));
 exports.SocialFeed = (new _SocialFeed());
-//# sourceMappingURL=socialFeed.js.map
+
 
 /***/ }),
 /* 617 */
@@ -64126,7 +64166,7 @@ var _UserProfile = /** @class */ (function (_super) {
     return _UserProfile;
 }(utils_1.Base));
 exports.UserProfile = _UserProfile;
-//# sourceMappingURL=userProfile.js.map
+
 
 /***/ }),
 /* 618 */
@@ -64219,7 +64259,7 @@ var _Utility = /** @class */ (function (_super) {
     return _Utility;
 }(utils_1.Base));
 exports.Utility = _Utility;
-//# sourceMappingURL=utility.js.map
+
 
 /***/ }),
 /* 619 */
@@ -64228,7 +64268,7 @@ exports.Utility = _Utility;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-//# sourceMappingURL=index.js.map
+
 
 /***/ }),
 /* 620 */
@@ -64306,7 +64346,7 @@ var _Dependencies = /** @class */ (function () {
     return _Dependencies;
 }());
 exports.Dependencies = _Dependencies;
-//# sourceMappingURL=dependencies.js.map
+
 
 /***/ }),
 /* 621 */
@@ -64687,7 +64727,7 @@ exports.FieldSchemaXML = function (fieldInfo) {
         }
     });
 };
-//# sourceMappingURL=fieldSchemaXML.js.map
+
 
 /***/ }),
 /* 622 */
@@ -64724,7 +64764,7 @@ exports.SPCfgType = {
     WebParts: 5,
     WebUserCustomActions: 4
 };
-//# sourceMappingURL=spCfgTypes.js.map
+
 
 /***/ }),
 /* 623 */
@@ -65113,7 +65153,7 @@ exports.JSLink = {
         return fieldRenderer ? fieldRenderer.RenderField(ctx, field, currentItem, ctx.ListSchema) : currentItem[field.Name];
     }
 };
-//# sourceMappingURL=jslink.js.map
+
 
 /***/ }),
 /* 624 */
@@ -65702,7 +65742,7 @@ exports.ListForm = {
         });
     }
 };
-//# sourceMappingURL=listForm.js.map
+
 
 /***/ }),
 /* 625 */
@@ -65895,7 +65935,7 @@ exports.ListFormField = {
         });
     }
 };
-//# sourceMappingURL=listFormField.js.map
+
 
 /***/ }),
 /* 626 */
@@ -65955,7 +65995,7 @@ exports.Loader = {
         }, 25);
     }
 };
-//# sourceMappingURL=loader.js.map
+
 
 /***/ }),
 /* 627 */
@@ -65986,7 +66026,7 @@ exports.parse = function (jsonString) {
     catch (_a) { }
     return null;
 };
-//# sourceMappingURL=parse.js.map
+
 
 /***/ }),
 /* 628 */
@@ -66022,7 +66062,7 @@ exports.RibbonLink = function (props) {
     // Return the link
     return link;
 };
-//# sourceMappingURL=ribbonLink.js.map
+
 
 /***/ }),
 /* 629 */
@@ -66062,7 +66102,7 @@ exports.SuiteBarLink = function (props) {
     // Return the link
     return link;
 };
-//# sourceMappingURL=sbLink.js.map
+
 
 /***/ }),
 /* 630 */
@@ -66505,7 +66545,7 @@ exports.Taxonomy = {
         return null;
     }
 };
-//# sourceMappingURL=taxonomy.js.map
+
 
 /***/ }),
 /* 631 */
@@ -66791,7 +66831,7 @@ var _WebPart = /** @class */ (function () {
     return _WebPart;
 }());
 exports.WebPart = _WebPart;
-//# sourceMappingURL=webpart.js.map
+
 
 /***/ }),
 /* 632 */
@@ -66966,7 +67006,7 @@ exports.Status = {
         exports.Status.load().then(function () { SP.UI.Status.updateStatus(id, html); });
     }
 };
-//# sourceMappingURL=sp.js.map
+
 
 /***/ }),
 /* 633 */
@@ -66975,7 +67015,7 @@ exports.Status = {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-//# sourceMappingURL=index.js.map
+
 
 /***/ }),
 /* 634 */
@@ -66990,7 +67030,7 @@ var mapper_1 = __webpack_require__(50);
 exports.SP = mapper_1.Types;
 var utils_1 = __webpack_require__(5);
 exports.Util = utils_1.Types;
-//# sourceMappingURL=types.js.map
+
 
 /***/ }),
 /* 635 */
@@ -67006,7 +67046,7 @@ var Mapper = __webpack_require__(50);
  * SharePoint REST Library
  */
 exports.$REST = {
-    __ver: 3.85,
+    __ver: 3.91,
     ContextInfo: Lib.ContextInfo,
     DefaultRequestToHostFl: false,
     Helper: {
@@ -67046,7 +67086,7 @@ if ((global == null || global.__ver == null || global.__ver < exports.$REST.__ve
     // Alert other scripts this library is loaded
     Lib.ContextInfo.window.SP.SOD.notifyScriptLoadedAndExecuteWaitingJobs("gd-sprest.js");
 }
-//# sourceMappingURL=rest.js.map
+
 
 /***/ }),
 /* 636 */
@@ -67168,7 +67208,7 @@ var BaseField = /** @class */ (function (_super) {
     return BaseField;
 }(React.Component));
 exports.BaseField = BaseField;
-//# sourceMappingURL=baseField.js.map
+
 
 /***/ }),
 /* 637 */
@@ -67616,7 +67656,7 @@ var FieldAttachments = /** @class */ (function (_super) {
     return FieldAttachments;
 }(React.Component));
 exports.FieldAttachments = FieldAttachments;
-//# sourceMappingURL=fieldAttachments.js.map
+
 
 /***/ }),
 /* 638 */
@@ -67639,8 +67679,8 @@ if(content.locals) module.exports = content.locals;
 if(false) {
 	// When the styles change, update the <style> tags
 	if(!content.locals) {
-		module.hot.accept("!!../../css-loader/index.js!../../sass-loader/lib/loader.js!./fieldAttachments.scss", function() {
-			var newContent = require("!!../../css-loader/index.js!../../sass-loader/lib/loader.js!./fieldAttachments.scss");
+		module.hot.accept("!!../../css-loader/index.js!../../sass-loader/lib/loader.js!./fieldAttachments.css", function() {
+			var newContent = require("!!../../css-loader/index.js!../../sass-loader/lib/loader.js!./fieldAttachments.css");
 			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 			update(newContent);
 		});
@@ -67658,7 +67698,7 @@ exports = module.exports = __webpack_require__(640)(false);
 
 
 // module
-exports.push([module.i, ".ms-AttachmentLink {\n  display: block;\n  width: 100%; }\n\n.ms-AttachmentLink > .ms-Icon {\n  padding-left: 5px; }\n", ""]);
+exports.push([module.i, "/** Render each link on it's own line */\n.ms-AttachmentLink {\n  display: block;\n  width: 100%; }\n\n/** Add spacing to the delete icon */\n.ms-AttachmentLink > .ms-Icon {\n  padding-left: 5px; }\n", ""]);
 
 // exports
 
@@ -68296,7 +68336,7 @@ var FieldBoolean = /** @class */ (function (_super) {
     return FieldBoolean;
 }(_1.BaseField));
 exports.FieldBoolean = FieldBoolean;
-//# sourceMappingURL=fieldBoolean.js.map
+
 
 /***/ }),
 /* 644 */
@@ -68451,7 +68491,7 @@ var FieldChoice = /** @class */ (function (_super) {
     return FieldChoice;
 }(_1.BaseField));
 exports.FieldChoice = FieldChoice;
-//# sourceMappingURL=fieldChoice.js.map
+
 
 /***/ }),
 /* 645 */
@@ -68614,7 +68654,7 @@ var FieldDateTime = /** @class */ (function (_super) {
     return FieldDateTime;
 }(_1.BaseField));
 exports.FieldDateTime = FieldDateTime;
-//# sourceMappingURL=fieldDateTime.js.map
+
 
 /***/ }),
 /* 646 */
@@ -68675,7 +68715,7 @@ exports.DatePickerStrings = {
     ],
     goToToday: "Go to Today"
 };
-//# sourceMappingURL=dtStrings.js.map
+
 
 /***/ }),
 /* 647 */
@@ -68769,7 +68809,7 @@ var Page = /** @class */ (function () {
     return Page;
 }());
 exports.Page = Page;
-//# sourceMappingURL=page.js.map
+
 
 /***/ }),
 /* 648 */
@@ -68971,7 +69011,7 @@ var FieldLookup = /** @class */ (function (_super) {
     return FieldLookup;
 }(_1.BaseField));
 exports.FieldLookup = FieldLookup;
-//# sourceMappingURL=fieldLookup.js.map
+
 
 /***/ }),
 /* 649 */
@@ -69229,7 +69269,7 @@ var FieldManagedMetadata = /** @class */ (function (_super) {
     return FieldManagedMetadata;
 }(_1.BaseField));
 exports.FieldManagedMetadata = FieldManagedMetadata;
-//# sourceMappingURL=fieldManagedMetadata.js.map
+
 
 /***/ }),
 /* 650 */
@@ -69343,7 +69383,7 @@ var FieldNumber = /** @class */ (function (_super) {
     return FieldNumber;
 }(_1.BaseField));
 exports.FieldNumber = FieldNumber;
-//# sourceMappingURL=fieldNumber.js.map
+
 
 /***/ }),
 /* 651 */
@@ -69429,7 +69469,7 @@ var FieldText = /** @class */ (function (_super) {
     return FieldText;
 }(_1.BaseField));
 exports.FieldText = FieldText;
-//# sourceMappingURL=fieldText.js.map
+
 
 /***/ }),
 /* 652 */
@@ -69539,7 +69579,7 @@ var FieldUrl = /** @class */ (function (_super) {
     return FieldUrl;
 }(_1.BaseField));
 exports.FieldUrl = FieldUrl;
-//# sourceMappingURL=fieldUrl.js.map
+
 
 /***/ }),
 /* 653 */
@@ -69671,7 +69711,7 @@ var FieldUser = /** @class */ (function (_super) {
     return FieldUser;
 }(_1.BaseField));
 exports.FieldUser = FieldUser;
-//# sourceMappingURL=fieldUser.js.map
+
 
 /***/ }),
 /* 654 */
@@ -69680,7 +69720,7 @@ exports.FieldUser = FieldUser;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-//# sourceMappingURL=index.js.map
+
 
 /***/ }),
 /* 655 */
@@ -70033,7 +70073,7 @@ var ItemForm = /** @class */ (function (_super) {
     return ItemForm;
 }(React.Component));
 exports.ItemForm = ItemForm;
-//# sourceMappingURL=itemForm.js.map
+
 
 /***/ }),
 /* 656 */
@@ -70296,7 +70336,7 @@ var SPPeoplePicker = /** @class */ (function (_super) {
     return SPPeoplePicker;
 }(React.Component));
 exports.SPPeoplePicker = SPPeoplePicker;
-//# sourceMappingURL=peoplePicker.js.map
+
 
 /***/ }),
 /* 657 */
@@ -70305,7 +70345,7 @@ exports.SPPeoplePicker = SPPeoplePicker;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-//# sourceMappingURL=index.js.map
+
 
 /***/ }),
 /* 658 */
@@ -70362,7 +70402,7 @@ exports.FabricWebPart = function (props) {
         onRenderEdit: renderEdit
     });
 };
-//# sourceMappingURL=wp.js.map
+
 
 /***/ }),
 /* 659 */
@@ -70627,7 +70667,7 @@ var WebPartList = /** @class */ (function (_super) {
     return WebPartList;
 }(React.Component));
 exports.WebPartList = WebPartList;
-//# sourceMappingURL=wpList.js.map
+
 
 /***/ }),
 /* 660 */
@@ -71029,7 +71069,7 @@ var WebPartSearch = /** @class */ (function (_super) {
     return WebPartSearch;
 }(_1.WebPartList));
 exports.WebPartSearch = WebPartSearch;
-//# sourceMappingURL=wpSearch.js.map
+
 
 /***/ }),
 /* 661 */
@@ -71240,7 +71280,7 @@ var WebPartTabs = /** @class */ (function (_super) {
     return WebPartTabs;
 }(React.Component));
 exports.WebPartTabs = WebPartTabs;
-//# sourceMappingURL=wpTabs.js.map
+
 
 /***/ }),
 /* 662 */
@@ -71451,7 +71491,7 @@ var WebPartCfgPanel = /** @class */ (function (_super) {
     return WebPartCfgPanel;
 }(React.Component));
 exports.WebPartCfgPanel = WebPartCfgPanel;
-//# sourceMappingURL=wpCfg.js.map
+
 
 /***/ }),
 /* 663 */
@@ -71680,7 +71720,7 @@ var WebPartListCfg = /** @class */ (function (_super) {
     return WebPartListCfg;
 }(_1.WebPartCfgPanel));
 exports.WebPartListCfg = WebPartListCfg;
-//# sourceMappingURL=wpListCfg.js.map
+
 
 /***/ }),
 /* 664 */
@@ -71879,7 +71919,7 @@ var WebPartFieldCfg = /** @class */ (function (_super) {
     return WebPartFieldCfg;
 }(_1.WebPartListCfg));
 exports.WebPartFieldCfg = WebPartFieldCfg;
-//# sourceMappingURL=wpFieldCfg.js.map
+
 
 /***/ }),
 /* 665 */
@@ -71997,7 +72037,7 @@ var WebPartSearchCfg = /** @class */ (function (_super) {
     return WebPartSearchCfg;
 }(_1.WebPartFieldCfg));
 exports.WebPartSearchCfg = WebPartSearchCfg;
-//# sourceMappingURL=wpSearchCfg.js.map
+
 
 /***/ }),
 /* 666 */
@@ -72006,7 +72046,7 @@ exports.WebPartSearchCfg = WebPartSearchCfg;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-//# sourceMappingURL=index.js.map
+
 
 /***/ }),
 /* 667 */
@@ -72021,7 +72061,7 @@ var fields_1 = __webpack_require__(14);
 exports.Fields = fields_1.Types;
 var webparts_1 = __webpack_require__(39);
 exports.WebParts = webparts_1.Types;
-//# sourceMappingURL=types.js.map
+
 
 /***/ }),
 /* 668 */
