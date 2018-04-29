@@ -9,6 +9,7 @@
             },
             cfgElementId: "demo-cfg",
             elementId: "demo",
+            wpClassName: "fabric",
             onRenderItems: function (wpInfo, items) {
                 var listItems = [];
 

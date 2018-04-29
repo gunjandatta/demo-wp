@@ -4,9 +4,7 @@ import { WebParts } from "gd-sprest-js";
 import Vue from "vue";
 
 // CSS
-import "gd-sprest-js/build/lib/css/fabric.min.css";
 import "gd-sprest-js/build/lib/css/fabric.components.min.css";
-import "gd-sprest-js/build/lib/css/gd-sprest-js.css";
 
 // Local
 import { Configuration } from "./cfg";
