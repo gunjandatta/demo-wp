@@ -11,7 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "gd-sprest": "^3.9.2",
+    "gd-sprest": "^3.9.4",
     "gd-sprest-js": "^1.8.9",
     "vue": "^2.5.16"
   },

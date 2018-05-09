@@ -10,7 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "gd-sprest": "^3.9.2",
+    "gd-sprest": "^3.9.4",
     "gd-sprest-react": "^2.9.3",
     "office-ui-fabric-react": "^5.98.0",
     "react": "^16.3.2",

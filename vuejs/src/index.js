@@ -1,7 +1,7 @@
 // Libraries
 import { Types } from "gd-sprest";
 import { WebParts } from "gd-sprest-js";
-import Vue from "vue";
+import { Vue } from "vue";
 
 // CSS
 import "gd-sprest-js/build/lib/css/fabric.components.min.css";

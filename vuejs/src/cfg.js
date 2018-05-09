@@ -103,10 +103,9 @@ Configuration.List["createTestData"] = () => {
 
     // Log
     console.log("Creating the items.");
-    debugger;
 
     // Get the list
-    var list = $REST.List(Configuration.List._configuration.ListCfg[0].Title);
+    var list = $REST.List("My Contacts");
 
     // Parse the data
     for (let i = 0; i < data.length; i++) {
