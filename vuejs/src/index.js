@@ -1,10 +1,10 @@
 // Libraries
 import { Types } from "gd-sprest";
 import { WebParts } from "gd-sprest-js";
-import { Vue } from "vue";
+import * as Vue from "vue";
 
 // CSS
-import "gd-sprest-js/build/lib/css/fabric.components.min.css";
+import "gd-sprest-js/build/lib/css/fabric.min.css";
 
 // Local
 import { Configuration } from "./cfg";
@@ -27,7 +27,7 @@ window["VueJSDemo"] = {
             elementId: "wp-vuejs",
             wpClassName: "fabric",
             onRenderItems: function (wpInfo, items) {
-                /* Render the webpart */
+                // Render the webpart
                 new Vue({
                     el: wpInfo.el,
                     data: () => {
