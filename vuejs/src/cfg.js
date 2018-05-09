@@ -1,4 +1,4 @@
-var $REST = require("gd-sprest");
+import { $REST } from "gd-sprest";
 
 /**
  * Configuration
@@ -103,14 +103,15 @@ Configuration.List["createTestData"] = () => {
 
     // Log
     console.log("Creating the items.");
+    debugger;
 
     // Get the list
-    var list = $REST.List("My Contacts");
+    var list = $REST.List(Configuration.List._configuration.ListCfg[0].Title);
 
     // Parse the data
     for (let i = 0; i < data.length; i++) {
         // Add the item
-        list.Items().add(data[i], true).execute(true);
+        list.Items().add(data[i]).execute(true);
     }
 
     // Wait for the items to be added
