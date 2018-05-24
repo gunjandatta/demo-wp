@@ -10,8 +10,8 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "gd-sprest": "^3.9.4",
-    "gd-sprest-js": "^1.8.9"
+    "gd-sprest": "^3.9.8",
+    "gd-sprest-js": "^2.0.4"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
@@ -20,6 +20,6 @@
     "css-loader": "^0.28.11",
     "style-loader": "^0.20.3",
     "ts-loader": "^3.5.0",
-    "webpack": "^3.11.0"
+    "webpack": "^3.12.0"
   }
 }
