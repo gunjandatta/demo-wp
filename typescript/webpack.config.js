@@ -29,24 +29,23 @@ module.exports = {
                     { loader: "css-loader" }
                 ]
             },
-            // JavaScript Files
-            {
-                // Target JavaScript files
-                test: /\.js$/,
-                // Exclude the node modules folder
-                exclude: /node_modules/,
-                // Compile the JavaScript ES5 code to JavaScript ES2015
-                loader: "babel-loader",
-                options: {
-                    presets: ["es2015"]
-                }
-            },
             // TypeScript Files
             {
                 // Target TypeScript files
                 test: /\.ts$/,
-                // Compile the TypeScript code to JavaScript ES5
-                loader: "ts-loader"
+                // Exclude the node modules
+                exclude: /node_modules/,
+                use: [
+                    // Compile JavaScript ES5 to JavaScript ES2015
+                    {
+                        loader: "babel-loader",
+                        options: {
+                            presets: ["env"]
+                        }
+                    },
+                    // Compile the TypeScript code to JavaScript ES5
+                    { loader: "ts-loader" }
+                ]
             }
         ]
     }
