@@ -1,5 +1,10 @@
 angular/node_modules
+angular/*.yaml
 js/node_modules
+js/*.yaml
 react/node_modules
+react/*.yaml
 typescript/node_modules
+typescript/*.yaml
 vuejs/node_modules
+vuejs/*.yaml

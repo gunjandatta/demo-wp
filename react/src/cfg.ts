@@ -80,7 +80,7 @@ export const Configuration = {
 // Method to add list test data
 Configuration.List["addTestData"] = () => {
     // Get the list
-    let list = new List("My Contacts");
+    let list = List("My Contacts");
 
     // Define the list of names
     let names = [
