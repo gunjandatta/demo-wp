@@ -11,8 +11,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "gd-sprest": "^4.4.6",
-    "gd-sprest-bs": "^1.5.8"
+    "gd-sprest-bs": "^1.6.0"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",

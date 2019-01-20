@@ -17,7 +17,8 @@ window["VueJSDemo"] = {
         // Create an instance of the webpart
         WebParts.WPList({
             odataQuery: {
-                OrderBy: ["Title"]
+                OrderBy: ["Title"],
+                Select: ["MCCategory", "MCPhoneNumber", "Title"]
             },
             cfgElementId: "wp-vuejs-cfg",
             elementId: "wp-vuejs",
