@@ -1,11 +1,11 @@
-import { $REST } from "gd-sprest";
+import { Helper } from "gd-sprest";
 
 /**
  * Configuration
  */
 export const Configuration = {
     // List
-    List: $REST.Helper.SPConfig({
+    List: Helper.SPConfig({
         ListCfg: [{
             CustomFields: [
                 {
@@ -33,7 +33,7 @@ export const Configuration = {
     }),
 
     // WebPart
-    WebPart: $REST.Helper.SPConfig({
+    WebPart: Helper.SPConfig({
         WebPartCfg: [
             {
                 FileName: "wpContacts_vuejs.webpart",
