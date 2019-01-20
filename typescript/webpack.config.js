@@ -1,15 +1,25 @@
 var path = require("path");
-var webpack = require("webpack");
 
 // WebPack Configuration
 module.exports = {
     // Entry Point
-    entry: "./src/index.ts",
+    entry: [
+        "./node_modules/gd-sprest-bs/dist/gd-sprest-bs.js",
+        "./src/index.ts"
+    ],
 
     // Output
     output: {
         filename: "wpDemo.js",
         path: path.resolve(__dirname, "dist")
+    },
+
+    // External Libs
+    // Since we are including the library as part of the entry point, we don't
+    // want webpack to bundle the library twice.
+    externals: {
+        "gd-sprest": "$REST",
+        "gd-sprest-bs": "$REST"
     },
 
     // Resolve File Types
@@ -40,7 +50,7 @@ module.exports = {
                     {
                         loader: "babel-loader",
                         options: {
-                            presets: ["env"]
+                            presets: ["@babel/preset-env"]
                         }
                     },
                     // Compile the TypeScript code to JavaScript ES5

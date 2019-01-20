@@ -15,7 +15,7 @@ export class Contacts {
      */
     constructor() {
         // Create an instance of the contacts webpart
-        new WebParts.FabricWebPart({
+        WebParts.FabricWebPart({
             cfgElementId: "wp-contactsCfg",
             displayElement: ContactsWebPart,
             editElement: WebParts.WebPartListCfg,

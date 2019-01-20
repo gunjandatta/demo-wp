@@ -1,10 +1,6 @@
 // Libraries
-import { Types } from "gd-sprest";
-import { WebParts } from "gd-sprest-js";
+import { WebParts } from "gd-sprest-bs";
 import * as Vue from "vue";
-
-// CSS
-import "gd-sprest-js/build/lib/css/fabric.min.css";
 
 // Local
 import { Configuration } from "./cfg";

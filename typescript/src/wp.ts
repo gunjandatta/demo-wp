@@ -1,5 +1,5 @@
 import { Types } from "gd-sprest";
-import { Fabric, WebParts } from "gd-sprest-js";
+import { Components, WebParts } from "gd-sprest-bs";
 import { Configuration } from "./cfg";
 
 /**
@@ -33,22 +33,20 @@ export class DemoWebPart {
     }
 
     // Method to render the list items
-    private renderItems = (wpInfo: WebParts.Types.IWPListInfo, items: Array<IDemoItem>) => {
-        var listItems = [];
-
-        // Parse the items
-        for (var i = 0; i < items.length; i++) {
-            // Add the item
-            listItems.push(Fabric.Templates.ListItem({
-                primaryText: items[i].Title,
-                metaText: items[i].Id.toString()
-            }));
-        }
-
-        // Render the list
-        Fabric.List({
+    private renderItems = (wpInfo: WebParts.IWPListInfo, items: Array<IDemoItem>) => {
+        // Render a table
+        Components.Table({
             el: wpInfo.el,
-            items: listItems
+            columns: [
+                {
+                    name: "Id",
+                    title: "Item ID"
+                },
+                {
+                    name: "Title",
+                    title: "Title"
+                }
+            ]
         });
     }
 }

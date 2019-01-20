@@ -11,17 +11,16 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "gd-sprest": "^4.1.3",
-    "gd-sprest-js": "^2.2.3",
-    "vue": "^2.5.16"
+    "gd-sprest-bs": "^1.5.8",
+    "vue": "^2.5.22"
   },
   "devDependencies": {
-    "core-js": "^2.5.7",
-    "css-loader": "^1.0.0",
-    "style-loader": "^0.21.0",
-    "vue-loader": "^15.2.4",
-    "vue-template-compiler": "^2.5.16",
-    "webpack": "^4.16.1",
-    "webpack-cli": "^3.0.8"
+    "core-js": "^2.6.2",
+    "css-loader": "^2.1.0",
+    "style-loader": "^0.23.1",
+    "vue-loader": "^15.5.1",
+    "vue-template-compiler": "^2.5.22",
+    "webpack": "^4.28.4",
+    "webpack-cli": "^3.2.1"
   }
 }

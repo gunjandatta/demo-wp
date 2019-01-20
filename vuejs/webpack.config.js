@@ -2,11 +2,22 @@ var path = require('path');
 
 module.exports = {
     // File to target
-    entry: './src/index.js',
+    entry: [
+        './node_modules/gd-sprest-bs/dist/gd-sprest-bs.js',
+        './src/index.js'
+    ],
 
     // Output
     output: {
         filename: 'demo-vue.js'
+    },
+
+    // External Libs
+    // Since we are including the library as part of the entry point, we don't
+    // want webpack to bundle the library twice.
+    externals: {
+        "gd-sprest": "$REST",
+        "gd-sprest-bs": "$REST"
     },
 
     // Resolve the file extensions
