@@ -5,7 +5,7 @@ import { WebParts } from "gd-sprest-react";
 /**
  * Contact Item
  */
-export interface IContactItem extends Types.SP.IListItemQueryResult {
+export interface IContactItem extends Types.SP.IListItemQuery {
     MCCategory: string;
     MCPhoneNumber: string;
     Title: string;

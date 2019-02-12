@@ -1,4 +1,4 @@
-import { Helper, List, SPTypes, Types } from "gd-sprest";
+import { Helper, List, SPTypes } from "gd-sprest";
 
 /**
  * Configuration
@@ -15,7 +15,7 @@ export const Configuration = {
                         name: "MCCategory",
                         title: "Category",
                         type: Helper.SPCfgFieldType.Choice
-                    } as Types.Helper.IFieldInfoChoice,
+                    } as Helper.IFieldInfoChoice,
                     {
                         name: "MCPhoneNumber",
                         title: "Phone Number",
