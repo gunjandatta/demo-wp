@@ -5,7 +5,7 @@ import { Configuration } from "./cfg";
 /**
  * Dev Item
  */
-interface IDemoItem extends Types.SP.IListItemQueryResult {
+interface IDemoItem extends Types.SP.IListItemQuery {
     Title: string;
 }
 
